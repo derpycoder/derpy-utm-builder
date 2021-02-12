@@ -50,7 +50,16 @@
             return plusCase;
         },
         "snake_case": (val) => {
-            return val.toUpperCase();
+            if(!val) {
+                return "";
+            }
+
+            const snakeCase = val.toLowerCase()
+                .replace(stripSeparatorRegex, ' ')
+                .split(' ')
+                .join('_')
+
+            return snakeCase;
         },
         "camelCase": (val) => {
             return val.toUpperCase();
