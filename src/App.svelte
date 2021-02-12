@@ -1,11 +1,10 @@
 <script>
     const formatOptions = [
         "Title Case",
+        "small case",
         "kebab-case",
         "plus+case",
         "snake_case",
-        "camelCase",
-        "PascalCase",
     ];
 
     const stripSeparatorRegex = /-|_|\+/g;
@@ -24,6 +23,18 @@
                 .join(' ');
             
             return titleCase;
+        },
+        "small case": (val) => {
+            if(!val) {
+                return "";
+            }
+
+            const smallCase = val.toLowerCase()
+                .replace(stripSeparatorRegex, ' ')
+                .split(' ')
+                .join(' ')
+
+            return smallCase;
         },
         "kebab-case": (val) => {
             if(!val) {
@@ -60,12 +71,6 @@
                 .join('_')
 
             return snakeCase;
-        },
-        "camelCase": (val) => {
-            return val.toUpperCase();
-        },
-        "PascalCase": (val) => {
-            return val.toUpperCase();
         },
     };
 
