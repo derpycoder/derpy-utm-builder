@@ -4,6 +4,7 @@
     import copy from "copy-text-to-clipboard";
     import { config, utmParams, builtURL } from "../stores/store";
     import { formatters, blogURL, showConfetti } from "../common";
+    import Button from "./Button.svelte";
 
     let selectedId = 0;
 
@@ -164,41 +165,29 @@
                     selectedId = id} placeholder="Content" />
                 </td>
                 <td class="flex justify-around py-1.5">
-                    <button type="button w-full" on:click={()=> addUTMRecord(id)}
-                        class="inline-flex items-center p-1 text-sm font-medium
-                        text-gray-700 bg-transparent rounded-md shadow-sm hover:bg-gray-50
-                        focus:outline-none focus:ring-2 focus:ring-offset-2
-                        focus:ring-indigo-500">
+                    <Button on:click={()=> addUTMRecord(id)}>
                         <svg class="h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
-                    </button>
-                    <button id="copy-url" type="button w-full" class={`inline-flex items-center p-1 text-sm font-medium
-                        text-gray-700 bg-transparent rounded-md shadow-sm hover:bg-gray-50 focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${utmParam.validity ? ''
-                        : 'cursor-default pointer-events-none' }`} on:click={()=>
-                        copyURL(id)}>
+                    </Button>
+                    <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
                         <svg class={`h-5 ${utmParam.validity ? 'text-gray-500' : 'text-gray-300' }`}
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6
-              12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0
-              002 2z" />
+                                12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0
+                                002 2z" />
                         </svg>
-                    </button>
-                    <button type="button w-full" on:click={()=> deleteUTMRecord(id)}
-                        class="inline-flex items-center p-1 text-sm font-medium
-                        text-gray-700 bg-transparent rounded-md shadow-sm tooltip
-                        hover:bg-gray-50 focus:outline-none focus:ring-2
-                        focus:ring-offset-2 focus:ring-indigo-500">
+                    </Button>
+                    <Button on:click={()=> deleteUTMRecord(id)}>
                         <svg class="h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0
-              01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1
-              0 00-1 1v3M4 7h16" />
+                                01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1
+                                0 00-1 1v3M4 7h16" />
                         </svg>
-                    </button>
+                    </Button>
                 </td>
             </tr>
             {/each}
