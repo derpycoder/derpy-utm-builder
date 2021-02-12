@@ -37,6 +37,19 @@
         "Direct",
         "Indirect"
     ];
+
+    const utmParams = [
+        {
+            source: "Reddit",
+            medium: "Social",
+            content: ""
+        },
+        {
+            source: "WhatsApp",
+            medium: "Chat",
+            content: ""
+        }
+    ];
 </script>
 
 <a target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail"
@@ -64,7 +77,7 @@
                     </svg>
                 </label>
                 <div class="flex w-full rounded-md shadow-sm">
-                    <input list="urls" name="browser"
+                    <input name="url"
                         class="flex-1 block w-full px-4 py-2 border border-gray-300 rounded-none outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm"
                         placeholder="https://www.derpycoder.com">
                 </div>
@@ -76,19 +89,14 @@
                     <option>{option}</option>
                     {/each}
                 </select>
-                <input name="browser"
+                <input name="campaign"
                     class="px-4 py-2 border border-gray-300 rounded-none rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Campaign">
-                <input name="browser"
+                <input name="terms"
                     class="px-4 py-2 border border-gray-300 rounded-none rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Terms">
             </div>
         </div>
-        <datalist id="urls" class="appearance-none">
-            <option value="https://www.derpycoder.com">
-            <option value="https://www.abhijit-kar.com">
-            <option value="https://www.derpycoder.com/snowtail-snowpack-tailwind-starter-to-speed-up-theme-dev/">
-        </datalist>
     </section>
 
     <section class="relative p-8 pb-3 bg-white rounded-lg shadow-2xl">
@@ -110,6 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {#each utmParams as utmParam}
                     <tr>
                         <td>
                             <svg class="w-4 h-4 text-gray-500 cursor-move select-none fill-current" viewBox="0 0 32 32">
@@ -119,19 +128,19 @@
                             </svg>
                         </td>
                         <td>
-                            <input list="source" name="browser"
+                            <input list="source" name="source"
                                 class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm"
-                                placeholder="Reddit" required>
+                                placeholder="Reddit" value={utmParam.source} required>
                         </td>
                         <td>
-                            <input list="medium" name="browser"
+                            <input list="medium" name="medium"
                                 class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm"
-                                placeholder="Social" required>
+                                placeholder="Social" value={utmParam.medium} required>
                         </td>
                         <td>
-                            <input list="browsers" name="browser"
+                            <input name="content"
                                 class="block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm"
-                                placeholder="Subreddit">
+                                value={utmParam.content} placeholder="Content">
                         </td>
                         <td class="flex justify-around py-1.5">
                             <button type="button w-full"
@@ -160,6 +169,7 @@
                             </button>
                         </td>
                     </tr>
+                    {/each}
                 </tbody>
             </table>
         </div>
