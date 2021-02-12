@@ -369,9 +369,8 @@
   <section class="relative p-8 pb-3 bg-white rounded-lg shadow-2xl">
     <div class="w-full mb-3 overflow-auto">
       <table class="bg-white border-collapse table-auto">
-        <thead class="text-left">
+        <thead class="text-left text-center">
           <tr class="text-gray-500 border-b border-gray-300">
-            <th />
             <th class="w-1/4 px-4 py-2 cursor-pointer">
               Source
               <span class="text-sm text-red-500">*</span>
@@ -395,23 +394,10 @@
               out:fly={{ y: -50, duration: 100 }}
               in:fly={{ y: -50, duration: 300 }}>
               <td>
-                <svg
-                  class="w-4 h-4 text-gray-500 cursor-move select-none
-                  fill-current"
-                  viewBox="0 0 32 32">
-                  <path
-                    d="M9.125 27.438h4.563v4.563H9.125zm9.188
-                    0h4.563v4.563h-4.563zm-9.188-9.125h4.563v4.563H9.125zm9.188
-                    0h4.563v4.563h-4.563zM9.125 9.125h4.563v4.563H9.125zm9.188
-                    0h4.563v4.563h-4.563zM9.125 0h4.563v4.563H9.125zm9.188
-                    0h4.563v4.563h-4.563z" />
-                </svg>
-              </td>
-              <td>
                 <input
                   name="source"
-                  class="flex-1 block w-full px-4 py-2 text-gray-600 truncate
-                  outline-none sm:text-sm bg-transparent"
+                  class="text-center flex-1 block w-full px-4 py-2 text-gray-600
+                  truncate outline-none sm:text-sm bg-transparent"
                   placeholder="Source"
                   bind:value={utmParam.source}
                   required />
@@ -419,8 +405,8 @@
               <td>
                 <input
                   name="medium"
-                  class="flex-1 block w-full px-4 py-2 text-gray-600 truncate
-                  outline-none sm:text-sm bg-transparent"
+                  class="text-center flex-1 block w-full px-4 py-2 text-gray-600
+                  truncate outline-none sm:text-sm bg-transparent"
                   placeholder="Medium"
                   bind:value={utmParam.medium}
                   required />
@@ -428,8 +414,8 @@
               <td>
                 <input
                   name="content"
-                  class="block w-full px-4 py-2 text-gray-600 truncate
-                  outline-none sm:text-sm bg-transparent"
+                  class="text-center block w-full px-4 py-2 text-gray-600
+                  truncate outline-none sm:text-sm bg-transparent"
                   bind:value={utmParam.content}
                   placeholder="Content" />
               </td>
