@@ -13,7 +13,8 @@
         $utmParams = tmp.utmParams;
     }
 
-    $: persistData();
+    const configSubscription = config.subscribe(persistData);
+    const paramsSubscription = utmParams.subscribe(persistData);
 
     function persistData() {
         localStorage.derpy_utm_builder = JSON.stringify({
@@ -21,6 +22,13 @@
             utmParams: $utmParams,
         });
     }
+
+    onMount(() => {
+        return () => {
+            configSubscription.unsubscribe();
+            paramsSubscription.unsubscribe();
+        };
+    });
 </script>
 
 <GitHubRibbon />
