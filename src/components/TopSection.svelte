@@ -1,7 +1,6 @@
 <script>
-    import { blogURL, formatOptions } from '../common/constants';
+    import { formatters, blogURL, formatOptions } from '../common';
     import { config } from "../stores/store";
-    import { formatters } from "../common/utils";
 
     $: {
         const format = formatters[$config.format];

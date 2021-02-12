@@ -1,4 +1,4 @@
-import { stripSeparatorRegex } from './constants';
+import { stripSeparatorRegex } from './';
 
 export const formatters = {
     "Title Case": val => {

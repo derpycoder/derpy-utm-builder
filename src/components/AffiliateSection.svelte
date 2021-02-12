@@ -1,5 +1,5 @@
 <script>
-    import { showFireWorks } from "../common/confetti";
+    import { showFireWorks } from "../common";
 </script>
 
 <section class="flex justify-center p-5 mb-2 mb-6 text-xs text-gray-900 bg-white

@@ -1,5 +1,5 @@
 <script>
-    import { toggleTheme } from "../common/theme";
+    import { toggleTheme } from "../common";
 </script>
 
 <button class="mb-6 text-indigo-900 select-none dark:text-white focus:outline-none">

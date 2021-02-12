@@ -3,9 +3,7 @@
     import { flip } from "svelte/animate";
     import copy from "copy-text-to-clipboard";
     import { config, utmParams, builtURL } from "../stores/store";
-    import { showConfetti } from "../common/confetti";
-    import { blogURL } from "../common/constants";
-    import { formatters } from "../common/utils";
+    import { formatters, blogURL, showConfetti } from "../common";
 
     let selectedId = 0;
 
