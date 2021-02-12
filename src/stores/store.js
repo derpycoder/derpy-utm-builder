@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { initialUTMParams } from "../common/constants.js";
+import { initialUTMParams, blogURL } from "../common/constants.js";
 
 export const config = writable({
     url: "",
@@ -7,4 +7,7 @@ export const config = writable({
     campaign: "",
     terms: ""
 });
+
 export const utmParams = writable([initialUTMParams]);
+
+export const builtURL = writable(blogURL)

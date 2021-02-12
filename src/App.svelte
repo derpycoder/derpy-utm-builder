@@ -4,28 +4,20 @@
     import { formatters } from "./common/utils";
     import { showFireWorks } from "./common/confetti";
     import { initTheme, toggleTheme } from "./common/theme";
-    import { config, utmParams } from "./stores/store";
+    import { config, utmParams, builtURL } from "./stores/store";
     import TopSection from "./components/TopSection.svelte";
     import BottomSection from "./components/BottomSection.svelte";
 
-    let mounted = false;
-
     initTheme();
 
-    onMount(async () => {
-        if (localStorage.derpy_utm_builder) {
-            const tmp = JSON.parse(localStorage.derpy_utm_builder);
+    if (localStorage.derpy_utm_builder) {
+        const tmp = JSON.parse(localStorage.derpy_utm_builder);
 
-            $config = tmp.config;
-            $utmParams = tmp.utmParams;
-        }
-
-        mounted = true;
-    });
-
-    $: {
-        mounted && persistData();
+        $config = tmp.config;
+        $utmParams = tmp.utmParams;
     }
+
+    $: persistData();
 
     function persistData() {
         localStorage.derpy_utm_builder = JSON.stringify({
@@ -54,6 +46,8 @@
 
     <section class="relative p-8 pb-3 bg-white rounded-lg shadow-2xl">
         <BottomSection />
+        <textarea class="p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2
+      focus:ring-indigo-500 focus:border-indigo-500 rounded-md" id="story" name="story" rows="3">{$builtURL}</textarea>
     </section>
 </main>
 

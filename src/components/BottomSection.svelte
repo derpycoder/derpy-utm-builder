@@ -2,12 +2,11 @@
     import { fly } from "svelte/transition";
     import { flip } from "svelte/animate";
     import copy from "copy-text-to-clipboard";
-    import { config, utmParams } from "../stores/store";
+    import { config, utmParams, builtURL } from "../stores/store";
     import { showConfetti } from "../common/confetti";
     import { blogURL } from "../common/constants";
     import { formatters } from "../common/utils";
 
-    let builtURL = blogURL;
     let selectedId = 0;
 
     const addUTMRecord = id => {
@@ -113,14 +112,14 @@
 
         $utmParams = tmp;
 
-        builtURL = buildURL(selectedId);
+        $builtURL = buildURL(selectedId);
 
         checkValidity();
     }
 
     const copyURL = id => {
         selectedId = id;
-        copy(encodeURI(builtURL));
+        copy(encodeURI($builtURL));
 
         showConfetti();
 
@@ -209,5 +208,3 @@
         </tbody>
     </table>
 </div>
-<textarea class="p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2
-      focus:ring-indigo-500 focus:border-indigo-500 rounded-md" id="story" name="story" rows="3">{builtURL}</textarea>
