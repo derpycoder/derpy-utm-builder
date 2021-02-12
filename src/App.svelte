@@ -74,52 +74,26 @@
         },
     };
 
-    const sources = [
-        "Reddit",
-        "Facebook",
-        "WhatsApp",
-        "LinkedIn",
-        "Twitter",
-        "Hacker News",
-    ];
-
-    const mediums = [
-        "Social",
-        "Chat",
-        "Banner",
-        "Email",
-        "CPC",
-        "Direct",
-        "Indirect"
-    ];
-
     let config = {
-        url: "https://www.derpycoder.com",
+        url: "",
         format: "Title Case",
-        campaign: "Wuba Luba Dub Dub",
-        terms: "Wuba Luba Dub Dub",
+        campaign: "",
+        terms: "",
     };
 
-    let utmParams = [
-        {
-            source: "Reddit",
-            medium: "Social",
-            content: ""
-        },
-        {
-            source: "WhatsApp",
-            medium: "Chat",
-            content: ""
-        }
-    ];
+    const initialUTMParams = {
+        source: "",
+        medium: "",
+        content: ""
+    };
+
+    let utmParams = [initialUTMParams];
 
     const addUTMRecord = (id) => {
         let tmp = utmParams;
 
         tmp.splice(id + 1, 0, {
-            source: "",
-            medium: "",
-            content: "",
+            ...utmParams[id]
         });
 
         utmParams = [
@@ -129,6 +103,8 @@
 
     const deleteUTMRecord = (id) => {
         if(utmParams.length === 1) {
+            utmParams = [initialUTMParams];
+
             return;
         }
 
@@ -239,12 +215,12 @@
                             </svg>
                         </td>
                         <td>
-                            <input list="source" name="source"
+                            <input name="source"
                                 class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
                                 placeholder="Source" bind:value={utmParam.source} required>
                         </td>
                         <td>
-                            <input list="medium" name="medium"
+                            <input name="medium"
                                 class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
                                 placeholder="Medium" bind:value={utmParam.medium} required>
                         </td>
@@ -288,16 +264,6 @@
             https://www.derpycoder.com
         </div>
     </section>
-    <datalist id="source" class="appearance-none">
-        {#each sources as source}
-            <option value={source}>
-        {/each}
-    </datalist>
-    <datalist id="medium" class="appearance-none">
-        {#each mediums as medium}
-            <option value={medium}>
-        {/each}
-    </datalist>
 </main>
 
 <footer class="mb-3">
