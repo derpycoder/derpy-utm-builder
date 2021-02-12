@@ -27,6 +27,16 @@
         "Twitter",
         "Hacker News",
     ];
+
+    const mediums = [
+        "Social",
+        "Chat",
+        "Banner",
+        "Email",
+        "CPC",
+        "Direct",
+        "Indirect"
+    ];
 </script>
 
 <a target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail"
@@ -66,7 +76,7 @@
                     <option>{option}</option>
                     {/each}
                 </select>
-                <input list="campaign" name="browser"
+                <input name="browser"
                     class="px-4 py-2 border border-gray-300 rounded-none rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="Campaign">
                 <input name="browser"
@@ -163,16 +173,9 @@
         {/each}
     </datalist>
     <datalist id="medium" class="appearance-none">
-        <option value="Social">
-        <option value="Chat">
-        <option value="Banner">
-        <option value="Email">
-        <option value="CPC">
-    </datalist>
-    <datalist id="campaign" class="appearance-none">
-        <option value="Summer Sale">
-        <option value="Product Name">
-        <option value="Slogan">
+        {#each mediums as medium}
+            <option value={medium}>
+        {/each}
     </datalist>
 </main>
 
