@@ -4,12 +4,14 @@
   import copy from "copy-text-to-clipboard";
   import confetti from "canvas-confetti";
 
+  const blogURL = "https://www.derpycoder.com";
+
   const formatOptions = [
     "Title Case",
-    "small case",
-    "kebab-case",
     "plus+case",
+    "kebab-case",
     "snake_case",
+    "lower case",
     "fReE ForM"
   ];
 
@@ -31,7 +33,7 @@
 
       return titleCase;
     },
-    "small case": val => {
+    "lower case": val => {
       if (!val) {
         return "";
       }
@@ -129,18 +131,27 @@
     utmParams = [...tmp];
   };
 
-  let builtURL = "https://www.derpycoder.com";
+  let builtURL = blogURL;
   let selectedId = 0;
-  const buildUrl = () => {
-    const { url, campaign, terms } = config;
+
+  const buildURL = () => {
+    let { url, campaign, terms } = config;
+
+    url = url.trim();
 
     if (!url) {
-      return builtURL;
+      return blogURL;
     }
 
     let tmp = url;
 
-    const { source, medium, content } = utmParams[selectedId];
+    let { source, medium, content } = utmParams[selectedId];
+
+    campaign = campaign.trim();
+    terms = campaign.trim();
+    source = source.trim();
+    medium = medium.trim();
+    content = content.trim();
 
     if (campaign) {
       tmp += `?utm_campaign=${campaign}`;
@@ -185,7 +196,7 @@
 
     utmParams = tmp;
 
-    builtURL = buildUrl(selectedId);
+    builtURL = buildURL(selectedId);
   }
 
   const copyURL = id => {
@@ -302,7 +313,7 @@
             focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md
             sm:text-sm"
             bind:value={config.url}
-            placeholder="https://www.derpycoder.com" />
+            placeholder={blogURL} />
         </div>
       </div>
       <div class="grid grid-cols-3 gap-4">
