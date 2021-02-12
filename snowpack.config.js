@@ -23,6 +23,6 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    /* ... */
+    metaUrlPath: 'snowpack' // Necessary to make the site work with GitHub Pages!
   },
 };
