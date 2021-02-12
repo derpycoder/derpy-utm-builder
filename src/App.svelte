@@ -34,12 +34,20 @@
                 .replace(stripSeparatorRegex, ' ')
                 .split(' ')
                 .join('-')
-                
 
             return kebabCase;
         },
         "plus+case": (val) => {
-            return val.toUpperCase();
+            if(!val) {
+                return "";
+            }
+
+            const plusCase = val.toLowerCase()
+                .replace(stripSeparatorRegex, ' ')
+                .split(' ')
+                .join('+')
+
+            return plusCase;
         },
         "snake_case": (val) => {
             return val.toUpperCase();
