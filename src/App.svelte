@@ -1,149 +1,149 @@
 <script>
-  import copy from 'copy-text-to-clipboard'
+  import copy from "copy-text-to-clipboard";
 
   const formatOptions = [
-    'Title Case',
-    'small case',
-    'kebab-case',
-    'plus+case',
-    'snake_case',
-  ]
+    "Title Case",
+    "small case",
+    "kebab-case",
+    "plus+case",
+    "snake_case"
+  ];
 
-  const stripSeparatorRegex = /-|_|\+/g
+  const stripSeparatorRegex = /-|_|\+/g;
 
   const formatters = {
-    'Title Case': (val) => {
+    "Title Case": val => {
       if (!val) {
-        return ''
+        return "";
       }
       const titleCase = val
         .toLowerCase()
-        .replace(stripSeparatorRegex, ' ')
-        .split(' ')
-        .map((word) => {
-          return word.replace(word[0], word[0] && word[0].toUpperCase())
+        .replace(stripSeparatorRegex, " ")
+        .split(" ")
+        .map(word => {
+          return word.replace(word[0], word[0] && word[0].toUpperCase());
         })
-        .join(' ')
+        .join(" ");
 
-      return titleCase
+      return titleCase;
     },
-    'small case': (val) => {
+    "small case": val => {
       if (!val) {
-        return ''
+        return "";
       }
 
       const smallCase = val
         .toLowerCase()
-        .replace(stripSeparatorRegex, ' ')
-        .split(' ')
-        .join(' ')
+        .replace(stripSeparatorRegex, " ")
+        .split(" ")
+        .join(" ");
 
-      return smallCase
+      return smallCase;
     },
-    'kebab-case': (val) => {
+    "kebab-case": val => {
       if (!val) {
-        return ''
+        return "";
       }
 
       const kebabCase = val
         .toLowerCase()
-        .replace(stripSeparatorRegex, ' ')
-        .split(' ')
-        .join('-')
+        .replace(stripSeparatorRegex, " ")
+        .split(" ")
+        .join("-");
 
-      return kebabCase
+      return kebabCase;
     },
-    'plus+case': (val) => {
+    "plus+case": val => {
       if (!val) {
-        return ''
+        return "";
       }
 
       const plusCase = val
         .toLowerCase()
-        .replace(stripSeparatorRegex, ' ')
-        .split(' ')
-        .join('+')
+        .replace(stripSeparatorRegex, " ")
+        .split(" ")
+        .join("+");
 
-      return plusCase
+      return plusCase;
     },
-    snake_case: (val) => {
+    snake_case: val => {
       if (!val) {
-        return ''
+        return "";
       }
 
       const snakeCase = val
         .toLowerCase()
-        .replace(stripSeparatorRegex, ' ')
-        .split(' ')
-        .join('_')
+        .replace(stripSeparatorRegex, " ")
+        .split(" ")
+        .join("_");
 
-      return snakeCase
-    },
-  }
+      return snakeCase;
+    }
+  };
 
   let config = {
-    url: '',
-    format: 'Title Case',
-    campaign: '',
-    terms: '',
-  }
+    url: "",
+    format: "Title Case",
+    campaign: "",
+    terms: ""
+  };
 
   const initialUTMParams = {
-    source: '',
-    medium: '',
-    content: '',
-  }
+    source: "",
+    medium: "",
+    content: ""
+  };
 
-  let utmParams = [initialUTMParams]
+  let utmParams = [initialUTMParams];
 
-  const addUTMRecord = (id) => {
-    let tmp = utmParams
+  const addUTMRecord = id => {
+    let tmp = utmParams;
 
     tmp.splice(id + 1, 0, {
-      ...utmParams[id],
-    })
+      ...utmParams[id]
+    });
 
-    utmParams = [...tmp]
-  }
+    utmParams = [...tmp];
+  };
 
-  const deleteUTMRecord = (id) => {
+  const deleteUTMRecord = id => {
     if (utmParams.length === 1) {
-      utmParams = [initialUTMParams]
+      utmParams = [initialUTMParams];
 
-      return
+      return;
     }
 
-    let tmp = utmParams
+    let tmp = utmParams;
 
-    tmp.splice(id, 1)
+    tmp.splice(id, 1);
 
-    utmParams = [...tmp]
-  }
+    utmParams = [...tmp];
+  };
 
   $: {
-    const format = formatters[config.format]
-    const { campaign, terms } = config
+    const format = formatters[config.format];
+    const { campaign, terms } = config;
 
     config = {
       ...config,
       campaign: format(campaign),
-      terms: format(terms),
-    }
+      terms: format(terms)
+    };
 
     const tmp = utmParams.map(({ source, medium, content }) => {
       return {
         source: format(source),
         medium: format(medium),
-        content: format(content),
-      }
-    })
+        content: format(content)
+      };
+    });
 
-    utmParams = tmp
+    utmParams = tmp;
   }
 
-  const copyURL = (id) => {
-    copy('🦄🌈')
-  }
+  const copyURL = id => {
+    copy("🦄🌈");
+  };
 </script>
 
 <a
@@ -205,7 +205,9 @@
       </div>
       <div class="grid grid-cols-3 gap-4">
         <div>
-          <label class="font-semibold text-gray-500" for="format">Format</label>
+          <label class="font-semibold text-gray-500 ml-1" for="format">
+            Format
+          </label>
           <select
             id="format"
             name="format"
@@ -221,7 +223,7 @@
           </select>
         </div>
         <div>
-          <label class="font-semibold text-gray-500" for="campaign">
+          <label class="font-semibold text-gray-500 ml-1" for="campaign">
             Campaign
             <span class="text-sm text-red-500">*</span>
           </label>
