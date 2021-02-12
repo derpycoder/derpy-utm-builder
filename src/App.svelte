@@ -1,5 +1,6 @@
 <script>
   import copy from "copy-text-to-clipboard";
+  import confetti from "canvas-confetti";
 
   const formatOptions = [
     "Title Case",
@@ -188,7 +189,61 @@
   const copyURL = id => {
     selectedId = id;
     copy(encodeURI(builtURL));
+
+    showConfetti();
+
+    iziToast.success({
+      title: "OK",
+      message: "Copied to Clipboard!",
+      position: "topRight"
+    });
   };
+
+  function showConfetti() {
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    confetti({
+      angle: randomInRange(55, 125),
+      spread: randomInRange(50, 70),
+      particleCount: randomInRange(50, 100),
+      origin: { y: 0.6 }
+    });
+  }
+
+  function showFireWorks() {
+    var duration = 15 * 1000;
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    var interval = setInterval(function() {
+      var timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      var particleCount = 50 * (timeLeft / duration);
+      // since particles fall down, start a bit higher than random
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        })
+      );
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        })
+      );
+    }, 250);
+  }
 </script>
 
 <a
