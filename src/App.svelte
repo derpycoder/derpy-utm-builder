@@ -107,10 +107,12 @@
     let mounted = false;
 
     onMount(async () => {
-        const tmp = JSON.parse(localStorage.derpy_utm_builder);
+        if (localStorage.derpy_utm_builder) {
+            const tmp = JSON.parse(localStorage.derpy_utm_builder);
 
-        config = tmp.config;
-        utmParams = tmp.utmParams;
+            config = tmp.config;
+            utmParams = tmp.utmParams;
+        }
 
         mounted = true;
     });
