@@ -1,7 +1,6 @@
 <script>
     const formatOptions = [
         "Title Case",
-        "Capital case",
         "kebab-case",
         "plus+case",
         "snake_case",
@@ -9,24 +8,35 @@
         "PascalCase",
     ];
 
+    const stripSeparatorRegex = /-|_|\+/g;
+
     const formatters = {
         "Title Case": (val) => {
             if(!val) {
                 return "";
             }
             const titleCase = val.toLowerCase()
+                .replace(stripSeparatorRegex, ' ')
                 .split(' ')
                 .map((word) => {
                     return word.replace(word[0], word[0] && word[0].toUpperCase());
-                });
+                })
+                .join(' ');
             
-            return titleCase.join(' ');
-        },
-        "Capital case": (val) => {
-            return val.toUpperCase();
+            return titleCase;
         },
         "kebab-case": (val) => {
-            return val.toUpperCase();
+            if(!val) {
+                return "";
+            }
+
+            const kebabCase = val.toLowerCase()
+                .replace(stripSeparatorRegex, ' ')
+                .split(' ')
+                .join('-')
+                
+
+            return kebabCase;
         },
         "plus+case": (val) => {
             return val.toUpperCase();
