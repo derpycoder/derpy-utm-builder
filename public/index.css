@@ -22,9 +22,3 @@ body {
 
   margin: 0 auto;
 }
-
-@media only screen and (min-width: 840px) {
-  #fork-btn {
-    display: block;
-  }
-}
