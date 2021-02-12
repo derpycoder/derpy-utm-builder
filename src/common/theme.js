@@ -1,3 +1,5 @@
+import { showConfetti } from "../common/confetti";
+
 function setTheme() {
     if (localStorage.theme === "dark") {
         document.documentElement.classList.add("dark");
