@@ -18,6 +18,15 @@
         "camelCase": () => { },
         "PascalCase": () => { },
     };
+
+    const sources = [
+        "Reddit",
+        "Facebook",
+        "WhatsApp",
+        "LinkedIn",
+        "Twitter",
+        "Hacker News",
+    ];
 </script>
 
 <a target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail"
@@ -149,9 +158,9 @@
         </div>
     </section>
     <datalist id="source" class="appearance-none">
-        <option value="Reddit">
-        <option value="Twitter">
-        <option value="Facebook">
+        {#each sources as source}
+            <option value={source}>
+        {/each}
     </datalist>
     <datalist id="medium" class="appearance-none">
         <option value="Social">
