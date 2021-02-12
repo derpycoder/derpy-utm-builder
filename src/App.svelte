@@ -38,7 +38,7 @@
         "Indirect"
     ];
 
-    const utmParams = [
+    let utmParams = [
         {
             source: "Reddit",
             medium: "Social",
@@ -50,6 +50,20 @@
             content: ""
         }
     ];
+
+    const addUTMRecord = (id) => {
+        let tmp = utmParams;
+
+        tmp.splice(id + 1, 0, {
+            ...utmParams[id]
+        });
+
+        console.log(id, tmp)
+
+        utmParams = [
+            ...tmp
+        ];
+    }
 </script>
 
 <a target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail"
@@ -118,7 +132,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {#each utmParams as utmParam}
+                    {#each utmParams as utmParam, id}
                     <tr class="even:bg-gray-100">
                         <td>
                             <svg class="w-4 h-4 text-gray-500 cursor-move select-none fill-current" viewBox="0 0 32 32">
@@ -143,7 +157,7 @@
                                 value={utmParam.content} placeholder="Content">
                         </td>
                         <td class="flex justify-around py-1.5">
-                            <button type="button w-full"
+                            <button type="button w-full" on:click={() => addUTMRecord(id)}
                                 class="inline-flex items-center p-1 text-sm font-medium text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <svg class="h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
