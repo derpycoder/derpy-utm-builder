@@ -3,10 +3,10 @@
     import { fly } from "svelte/transition";
     import { flip } from "svelte/animate";
     import copy from "copy-text-to-clipboard";
-    import { initialUTMParams, blogURL, formatOptions, stripSeparatorRegex } from "./constants.js";
-    import { formatters } from "./utils.js";
-    import { showConfetti, showFireWorks } from "./confetti.js";
-    import { initTheme, toggleTheme } from "./theme.js";
+    import { initialUTMParams, blogURL, formatOptions, stripSeparatorRegex } from "./common/constants.js";
+    import { formatters } from "./common/utils.js";
+    import { showConfetti, showFireWorks } from "./common/confetti.js";
+    import { initTheme, toggleTheme } from "./common/theme.js";
 
     let config = {
         url: "",
