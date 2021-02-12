@@ -32,7 +32,7 @@ import { fly } from "../../snowpack/pkg/svelte/transition.js";
 import { flip } from "../../snowpack/pkg/svelte/animate.js";
 import copy from "../../snowpack/pkg/copy-text-to-clipboard.js";
 import { config, utmParams, builtURL } from "../stores/store.js";
-import { formatters, blogURL, showConfetti } from "../common/index.js";
+import { formatters, blogURL, showConfetti, initialUTMParams } from "../common/index.js";
 import Button from "./Button.svelte.js";
 
 function get_each_context(ctx, list, i) {
