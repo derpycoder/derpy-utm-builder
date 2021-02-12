@@ -99,6 +99,8 @@
   let utmParams = [initialUTMParams];
 
   const addUTMRecord = id => {
+    selectedId = 0;
+
     let tmp = utmParams;
 
     tmp.splice(id + 1, 0, {
@@ -109,6 +111,8 @@
   };
 
   const deleteUTMRecord = id => {
+    selectedId = 0;
+
     if (utmParams.length === 1) {
       utmParams = [initialUTMParams];
 
@@ -123,8 +127,8 @@
   };
 
   let builtURL = "https://www.derpycoder.com";
-
-  const buildUrl = id => {
+  let selectedId = 0;
+  const buildUrl = () => {
     const { url, campaign, terms } = config;
 
     if (!url) {
@@ -133,7 +137,7 @@
 
     let tmp = url;
 
-    const { source, medium, content } = utmParams[id];
+    const { source, medium, content } = utmParams[selectedId];
 
     if (campaign) {
       tmp += `?utm_campaign=${campaign}`;
@@ -178,10 +182,11 @@
 
     utmParams = tmp;
 
-    builtURL = buildUrl(0);
+    builtURL = buildUrl(selectedId);
   }
 
   const copyURL = id => {
+    selectedId = id;
     copy(encodeURI(builtURL));
   };
 </script>
@@ -429,7 +434,13 @@
         </tbody>
       </table>
     </div>
-    <div class="text-center text-gray-400">{builtURL}</div>
+    <textarea
+      class="w-full text-center text-gray-400 outline-none"
+      id="story"
+      name="story"
+      rows="5">
+      {builtURL}
+    </textarea>
   </section>
 </main>
 
