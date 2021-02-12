@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { blogURL, stripSeparatorRegex, formatters, initTheme } from "./common";
+    import { initTheme } from "./common";
     import { config, utmParams, builtURL } from "./stores/store";
     import { AffiliateSection, TopSection, BottomSection, GitHubRibbon, ThemeSwitcher, SectionContainer } from "./components";
 
