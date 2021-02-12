@@ -107,7 +107,7 @@
     let mounted = false;
 
     onMount(async () => {
-        const tmp = JSON.parse(localStorage.advancedUTMGenerator);
+        const tmp = JSON.parse(localStorage.derpy_utm_builder);
 
         config = tmp.config;
         utmParams = tmp.utmParams;
@@ -233,7 +233,7 @@
     };
 
     function persistData() {
-        localStorage.advancedUTMGenerator = JSON.stringify({
+        localStorage.derpy_utm_builder = JSON.stringify({
             config,
             utmParams,
         });
@@ -333,7 +333,7 @@
 </a>
 
 <header class="mt-10 mb-10">
-    <h1 class="text-4xl font-bold text-white">UTM Generator</h1>
+    <h1 class="text-4xl font-bold text-white">UTM Builder</h1>
 </header>
 
 <main class="w-11/12 mb-6 xs:w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12
