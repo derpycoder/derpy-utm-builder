@@ -6,7 +6,8 @@
     "small case",
     "kebab-case",
     "plus+case",
-    "snake_case"
+    "snake_case",
+    "fReE ForM"
   ];
 
   const stripSeparatorRegex = /-|_|\+/g;
@@ -78,7 +79,8 @@
         .join("_");
 
       return snakeCase;
-    }
+    },
+    "fReE ForM": val => val
   };
 
   let config = {
@@ -120,6 +122,42 @@
     utmParams = [...tmp];
   };
 
+  let builtURL = "https://www.derpycoder.com";
+
+  const buildUrl = id => {
+    const { url, campaign, terms } = config;
+
+    if (!url) {
+      return builtURL;
+    }
+
+    let tmp = url;
+
+    const { source, medium, content } = utmParams[id];
+
+    if (campaign) {
+      tmp += `?utm_campaign=${campaign}`;
+
+      if (source) {
+        tmp += `&utm_source=${source}`;
+      }
+
+      if (medium) {
+        tmp += `&utm_medium=${medium}`;
+      }
+    }
+
+    if (terms) {
+      tmp += `&utm_term=${terms}`;
+    }
+
+    if (content) {
+      tmp += `&utm_content=${content}`;
+    }
+
+    return tmp;
+  };
+
   $: {
     const format = formatters[config.format];
     const { campaign, terms } = config;
@@ -139,10 +177,12 @@
     });
 
     utmParams = tmp;
+
+    builtURL = buildUrl(0);
   }
 
   const copyURL = id => {
-    copy("🦄🌈");
+    copy(encodeURI(builtURL));
   };
 </script>
 
@@ -237,7 +277,9 @@
             placeholder="Campaign" />
         </div>
         <div>
-          <label class="font-semibold text-gray-500" for="terms">Terms</label>
+          <label class="font-semibold text-gray-500 ml-1" for="terms">
+            Terms
+          </label>
           <input
             name="terms"
             id="terms"
@@ -387,7 +429,7 @@
         </tbody>
       </table>
     </div>
-    <div class="text-center text-gray-400">https://www.derpycoder.com</div>
+    <div class="text-center text-gray-400">{builtURL}</div>
   </section>
 </main>
 
