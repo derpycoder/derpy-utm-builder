@@ -221,7 +221,7 @@
       angle: randomInRange(55, 125),
       spread: randomInRange(50, 70),
       particleCount: randomInRange(50, 100),
-      origin: { y: 0.6 }
+      origin: { y: 0.5 }
     });
   }
 
@@ -256,6 +256,34 @@
         })
       );
     }, 250);
+  }
+
+  function setTheme() {
+    if (localStorage.theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  function initTheme() {
+    if (!"theme" in localStorage) {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        localStorage.theme = "dark";
+      } else {
+        localStorage.theme = "light";
+      }
+    }
+
+    setTheme();
+  }
+
+  initTheme();
+
+  function toggleTheme() {
+    localStorage.theme = localStorage.theme === "dark" ? "light" : "dark";
+    setTheme();
+    showConfetti();
   }
 </script>
 
@@ -512,7 +540,8 @@
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      id="theme-switcher">
+      id="theme-switcher"
+      on:click={toggleTheme}>
       <path
         d="M22 41C32.4934 41 41 32.4934 41 22 41 11.5066 32.4934 3 22 3 11.5066
         3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22
@@ -525,6 +554,7 @@
     <div class="w-2/5 mr-2">
       <a
         id="affiliate-link"
+        on:click={showFireWorks}
         href="https://ghost.org?via=derpycoder"
         target="_blank"
         rel="noopener">
