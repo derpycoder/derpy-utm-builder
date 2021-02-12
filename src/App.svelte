@@ -189,44 +189,56 @@
         <div class="flex w-full rounded-md shadow-sm">
           <input
             name="url"
-            class="flex-1 block w-full px-4 py-2 border border-gray-300
-            rounded-none outline-none focus:ring-1 focus:ring-indigo-500
-            focus:border-indigo-500 rounded-r-md sm:text-sm"
+            class="text-gray-600 flex-1 block w-full px-4 py-2 border
+            border-gray-300 rounded-none outline-none focus:ring-1
+            focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md
+            sm:text-sm"
             bind:value={config.url}
             placeholder="https://www.derpycoder.com" />
         </div>
       </div>
       <div class="grid grid-cols-3 gap-4">
-        <label for="format">
-          Format
+        <div>
+          <label class="font-semibold text-gray-500" for="format">Format</label>
           <select
             id="format"
             name="format"
             autocomplete="country"
             bind:value={config.format}
-            class="block px-3 py-2 text-right bg-white border border-gray-300
-            rounded-md shadow-sm outline-none appearance-none focus:ring-1
-            focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-            sm:text-sm">
+            class="text-gray-600 w-full block px-3 py-2 text-right bg-white
+            border border-gray-300 rounded-md shadow-sm outline-none
+            appearance-none focus:ring-1 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             {#each formatOptions as option}
               <option>{option}</option>
             {/each}
           </select>
-        </label>
-        <input
-          name="campaign"
-          class="px-4 py-2 border border-gray-300 rounded-none rounded-md
-          outline-none focus:ring-1 focus:ring-indigo-500
-          focus:border-indigo-500 sm:text-sm"
-          bind:value={config.campaign}
-          placeholder="Campaign" />
-        <input
-          name="terms"
-          class="px-4 py-2 border border-gray-300 rounded-none rounded-md
-          outline-none focus:ring-1 focus:ring-indigo-500
-          focus:border-indigo-500 sm:text-sm"
-          bind:value={config.terms}
-          placeholder="Terms" />
+        </div>
+        <div>
+          <label class="font-semibold text-gray-500" for="campaign">
+            Campaign
+            <span class="text-sm text-red-500">*</span>
+          </label>
+          <input
+            name="campaign"
+            id="campaign"
+            class="text-gray-600 w-full px-4 py-2 border border-gray-300
+            rounded-none rounded-md outline-none focus:ring-1
+            focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            bind:value={config.campaign}
+            placeholder="Campaign" />
+        </div>
+        <div>
+          <label class="font-semibold text-gray-500" for="terms">Terms</label>
+          <input
+            name="terms"
+            id="terms"
+            class="text-gray-600 w-full px-4 py-2 border border-gray-300
+            rounded-none rounded-md outline-none focus:ring-1
+            focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            bind:value={config.terms}
+            placeholder="Terms" />
+        </div>
       </div>
     </div>
   </section>
@@ -237,11 +249,9 @@
         <thead class="text-left">
           <tr class="text-gray-500 border-b border-gray-300">
             <th />
-            <th class="w-1/4 px-4 py-2">
-              <p class="cursor-pointer">
-                Source
-                <span class="text-sm text-red-500">*</span>
-              </p>
+            <th class="w-1/4 px-4 py-2 cursor-pointer">
+              Source
+              <span class="text-sm text-red-500">*</span>
             </th>
             <th class="w-1/4 px-4 py-2 cursor-pointer" title="Via">
               Medium
