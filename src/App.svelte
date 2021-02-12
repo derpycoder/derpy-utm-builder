@@ -437,7 +437,7 @@
                         <td class="flex justify-around py-1.5">
                             <button type="button w-full" on:click={()=> addUTMRecord(id)}
                                 class="inline-flex items-center p-1 text-sm font-medium
-                                text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50
+                                text-gray-700 bg-transparent rounded-md shadow-sm hover:bg-gray-50
                                 focus:outline-none focus:ring-2 focus:ring-offset-2
                                 focus:ring-indigo-500">
                                 <svg class="h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -447,7 +447,7 @@
                                 </svg>
                             </button>
                             <button id="copy-url" type="button w-full" class={`inline-flex items-center p-1 text-sm
-                                font-medium text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50
+                                font-medium text-gray-700 bg-transparent rounded-md shadow-sm hover:bg-gray-50
                                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
                                 ${utmParam.validity ? '' : 'cursor-default pointer-events-none' }`} on:click={()=>
                                 copyURL(id)}>
@@ -461,7 +461,7 @@
                             </button>
                             <button type="button w-full" on:click={()=> deleteUTMRecord(id)}
                                 class="inline-flex items-center p-1 text-sm font-medium
-                                text-gray-700 bg-white rounded-md shadow-sm tooltip
+                                text-gray-700 bg-transparent rounded-md shadow-sm tooltip
                                 hover:bg-gray-50 focus:outline-none focus:ring-2
                                 focus:ring-offset-2 focus:ring-indigo-500">
                                 <svg class="h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none"
