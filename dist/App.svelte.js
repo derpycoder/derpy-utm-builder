@@ -470,8 +470,7 @@ function create_fragment(ctx) {
 			p.innerHTML = `Made with ❤️ by
         <a target="_blank" rel="noopener" class="hover:underline" href="https://www.derpycoder.com">DerpyCoder</a>`;
 
-			attr(a0, "id", "fork-btn");
-			attr(a0, "class", "hidden");
+			attr(a0, "class", "hidden md:block");
 			attr(a0, "target", "_blank");
 			attr(a0, "rel", "noopener");
 			attr(a0, "href", "https://github.com/abhijit-kar/snowtail");
