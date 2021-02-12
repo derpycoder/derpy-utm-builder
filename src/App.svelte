@@ -1,4 +1,5 @@
 <script>
+    import { onMount } from 'svelte';
     import { fly } from "svelte/transition";
     import { flip } from "svelte/animate";
     import copy from "copy-text-to-clipboard";
@@ -103,6 +104,17 @@
 
     let utmParams = [initialUTMParams];
 
+    let mounted = false;
+
+    onMount(async () => {
+        const tmp = JSON.parse(localStorage.advancedUTMGenerator);
+
+        config = tmp.config;
+        utmParams = tmp.utmParams;
+
+        mounted = true;
+    });
+
     const addUTMRecord = id => {
         selectedId = id;
 
@@ -204,6 +216,7 @@
 
         builtURL = buildURL(selectedId);
         checkValidity();
+        mounted && persistData();
     }
 
     const copyURL = id => {
@@ -218,6 +231,13 @@
             position: "topRight"
         });
     };
+
+    function persistData() {
+        localStorage.advancedUTMGenerator = JSON.stringify({
+            config,
+            utmParams,
+        });
+    }
 
     function checkValidity() {
         utmParams = utmParams.map(params => {
@@ -386,7 +406,7 @@
                             <span class="text-sm text-red-500">*</span>
                         </th>
                         <th class="w-1/4 px-4 py-2 cursor-pointer"
-                            title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral">
+                            title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral, Chat">
                             Medium
                             <span class="text-sm text-red-500">*</span>
                         </th>
