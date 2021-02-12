@@ -3,91 +3,10 @@
     import { fly } from "svelte/transition";
     import { flip } from "svelte/animate";
     import copy from "copy-text-to-clipboard";
-    import confetti from "canvas-confetti";
-
-    const blogURL = "https://www.derpycoder.com";
-
-    const formatOptions = [
-        "Title Case",
-        "plus+case",
-        "kebab-case",
-        "snake_case",
-        "lower case",
-        "fReE ForM"
-    ];
-
-    const stripSeparatorRegex = /-|_|\+/g;
-
-    const formatters = {
-        "Title Case": val => {
-            if (!val) {
-                return "";
-            }
-            const titleCase = val
-                .toLowerCase()
-                .replace(stripSeparatorRegex, " ")
-                .split(" ")
-                .map(word => {
-                    return word.replace(word[0], word[0] && word[0].toUpperCase());
-                })
-                .join(" ");
-
-            return titleCase;
-        },
-        "lower case": val => {
-            if (!val) {
-                return "";
-            }
-
-            const smallCase = val
-                .toLowerCase()
-                .replace(stripSeparatorRegex, " ")
-                .split(" ")
-                .join(" ");
-
-            return smallCase;
-        },
-        "kebab-case": val => {
-            if (!val) {
-                return "";
-            }
-
-            const kebabCase = val
-                .toLowerCase()
-                .replace(stripSeparatorRegex, " ")
-                .split(" ")
-                .join("-");
-
-            return kebabCase;
-        },
-        "plus+case": val => {
-            if (!val) {
-                return "";
-            }
-
-            const plusCase = val
-                .toLowerCase()
-                .replace(stripSeparatorRegex, " ")
-                .split(" ")
-                .join("+");
-
-            return plusCase;
-        },
-        snake_case: val => {
-            if (!val) {
-                return "";
-            }
-
-            const snakeCase = val
-                .toLowerCase()
-                .replace(stripSeparatorRegex, " ")
-                .split(" ")
-                .join("_");
-
-            return snakeCase;
-        },
-        "fReE ForM": val => val
-    };
+    import { initialUTMParams, blogURL, formatOptions, stripSeparatorRegex } from "./constants.js";
+    import { formatters } from "./utils.js";
+    import { showConfetti, showFireWorks } from "./confetti.js";
+    import { initTheme, toggleTheme } from "./theme.js";
 
     let config = {
         url: "",
@@ -96,15 +15,12 @@
         terms: ""
     };
 
-    const initialUTMParams = {
-        source: "",
-        medium: "",
-        content: ""
-    };
-
     let utmParams = [initialUTMParams];
-
     let mounted = false;
+    let builtURL = blogURL;
+    let selectedId = 0;
+
+    initTheme();
 
     onMount(async () => {
         if (localStorage.derpy_utm_builder) {
@@ -148,9 +64,6 @@
 
         utmParams = [...tmp];
     };
-
-    let builtURL = blogURL;
-    let selectedId = 0;
 
     const buildURL = () => {
         let { url, campaign, terms } = config;
@@ -250,80 +163,6 @@
                 validity: config.campaign && source && medium
             };
         });
-    }
-
-    function showConfetti() {
-        function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        confetti({
-            angle: randomInRange(55, 125),
-            spread: randomInRange(50, 70),
-            particleCount: randomInRange(50, 100),
-            origin: { y: 0.5 }
-        });
-    }
-
-    function showFireWorks() {
-        var duration = 15 * 1000;
-        var animationEnd = Date.now() + duration;
-        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-        function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        var interval = setInterval(function () {
-            var timeLeft = animationEnd - Date.now();
-
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
-            }
-
-            var particleCount = 50 * (timeLeft / duration);
-            // since particles fall down, start a bit higher than random
-            confetti(
-                Object.assign({}, defaults, {
-                    particleCount,
-                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-                })
-            );
-            confetti(
-                Object.assign({}, defaults, {
-                    particleCount,
-                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-                })
-            );
-        }, 250);
-    }
-
-    function setTheme() {
-        if (localStorage.theme === "dark") {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    }
-
-    function initTheme() {
-        if (!"theme" in localStorage) {
-            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                localStorage.theme = "dark";
-            } else {
-                localStorage.theme = "light";
-            }
-        }
-
-        setTheme();
-    }
-
-    initTheme();
-
-    function toggleTheme() {
-        localStorage.theme = localStorage.theme === "dark" ? "light" : "dark";
-        setTheme();
-        showConfetti();
     }
 </script>
 
