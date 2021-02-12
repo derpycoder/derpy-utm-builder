@@ -364,8 +364,7 @@
             <div class="grid grid-cols-3 gap-4">
                 <div>
                     <label class="font-semibold text-gray-500 ml-1" title="Format of Params" for="format">
-                        Format
-                        <span class="text-sm text-red-500">*</span>
+                        Format<span class="text-sm text-red-500">*</span>
                     </label>
                     <select id="format" name="format" autocomplete="country" bind:value={config.format} class="text-gray-600 w-full block px-3 py-2 text-right bg-white
             border border-gray-300 rounded-md shadow-sm outline-none
@@ -379,8 +378,7 @@
                 <div>
                     <label class="font-semibold text-gray-500 ml-1" title="Required: Black Friday, Cyber Monday, ..."
                         for="campaign">
-                        Campaign
-                        <span class="text-sm text-red-500">*</span>
+                        Campaign<span class="text-sm text-red-500">*</span>
                     </label>
                     <input name="campaign" id="campaign" class="text-gray-600 w-full px-4 py-2 border border-gray-300
             rounded-md outline-none focus:ring-1 focus:ring-indigo-500
@@ -404,13 +402,11 @@
                 <thead class="text-left text-center">
                     <tr class="text-gray-500 border-b border-gray-300">
                         <th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Newsletter, Website, App">
-                            Source
-                            <span class="text-sm text-red-500">*</span>
+                            Source<span class="text-sm text-red-500">*</span>
                         </th>
                         <th class="w-1/4 px-4 py-2 cursor-pointer"
                             title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral, Chat">
-                            Medium
-                            <span class="text-sm text-red-500">*</span>
+                            Medium<span class="text-sm text-red-500">*</span>
                         </th>
                         <th class="w-1/4 px-4 py-2 cursor-pointer" title="Sub Reddit, Groups, ...">
                             Content
