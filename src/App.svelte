@@ -119,7 +119,7 @@
                 </thead>
                 <tbody>
                     {#each utmParams as utmParam}
-                    <tr>
+                    <tr class="even:bg-gray-100">
                         <td>
                             <svg class="w-4 h-4 text-gray-500 cursor-move select-none fill-current" viewBox="0 0 32 32">
                                 <path
@@ -129,17 +129,17 @@
                         </td>
                         <td>
                             <input list="source" name="source"
-                                class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm"
+                                class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
                                 placeholder="Reddit" value={utmParam.source} required>
                         </td>
                         <td>
                             <input list="medium" name="medium"
-                                class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm"
+                                class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
                                 placeholder="Social" value={utmParam.medium} required>
                         </td>
                         <td>
                             <input name="content"
-                                class="block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm"
+                                class="block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
                                 value={utmParam.content} placeholder="Content">
                         </td>
                         <td class="flex justify-around py-1.5">
