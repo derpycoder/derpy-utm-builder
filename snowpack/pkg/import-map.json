@@ -5,6 +5,7 @@
     "svelte": "./svelte.js",
     "svelte/animate": "./svelte/animate.js",
     "svelte/internal": "./svelte/internal.js",
+    "svelte/store": "./svelte/store.js",
     "svelte/transition": "./svelte/transition.js"
   }
 }

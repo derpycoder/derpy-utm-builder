@@ -1,5 +1,11 @@
 function noop() { }
 const identity = x => x;
+function assign(tar, src) {
+    // @ts-ignore
+    for (const k in src)
+        tar[k] = src[k];
+    return tar;
+}
 function run(fn) {
     return fn();
 }
@@ -17,6 +23,56 @@ function safe_not_equal(a, b) {
 }
 function is_empty(obj) {
     return Object.keys(obj).length === 0;
+}
+function subscribe(store, ...callbacks) {
+    if (store == null) {
+        return noop;
+    }
+    const unsub = store.subscribe(...callbacks);
+    return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+}
+function component_subscribe(component, store, callback) {
+    component.$$.on_destroy.push(subscribe(store, callback));
+}
+function create_slot(definition, ctx, $$scope, fn) {
+    if (definition) {
+        const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+        return definition[0](slot_ctx);
+    }
+}
+function get_slot_context(definition, ctx, $$scope, fn) {
+    return definition[1] && fn
+        ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
+        : $$scope.ctx;
+}
+function get_slot_changes(definition, $$scope, dirty, fn) {
+    if (definition[2] && fn) {
+        const lets = definition[2](fn(dirty));
+        if ($$scope.dirty === undefined) {
+            return lets;
+        }
+        if (typeof lets === 'object') {
+            const merged = [];
+            const len = Math.max($$scope.dirty.length, lets.length);
+            for (let i = 0; i < len; i += 1) {
+                merged[i] = $$scope.dirty[i] | lets[i];
+            }
+            return merged;
+        }
+        return $$scope.dirty | lets;
+    }
+    return $$scope.dirty;
+}
+function update_slot(slot, slot_definition, ctx, $$scope, dirty, get_slot_changes_fn, get_slot_context_fn) {
+    const slot_changes = get_slot_changes(slot_definition, $$scope, dirty, get_slot_changes_fn);
+    if (slot_changes) {
+        const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+        slot.p(slot_context, slot_changes);
+    }
+}
+function set_store_value(store, ret, value = ret) {
+    store.set(value);
+    return ret;
 }
 
 const is_client = typeof window !== 'undefined';
@@ -191,6 +247,15 @@ function get_current_component() {
 }
 function onMount(fn) {
     get_current_component().$$.on_mount.push(fn);
+}
+// TODO figure out if we still want to support
+// shorthand events, or if we want to implement
+// a real bubbling mechanism
+function bubble(component, event) {
+    const callbacks = component.$$.callbacks[event.type];
+    if (callbacks) {
+        callbacks.slice().forEach(fn => fn(event));
+    }
 }
 
 const dirty_components = [];
@@ -426,6 +491,9 @@ function create_out_transition(node, fn, params) {
         }
     };
 }
+function create_component(block) {
+    block && block.c();
+}
 function mount_component(component, target, anchor) {
     const { fragment, on_mount, on_destroy, after_update } = component.$$;
     fragment && fragment.m(target, anchor);
@@ -547,4 +615,4 @@ class SvelteComponent {
     }
 }
 
-export { transition_out as A, SvelteComponent as S, add_render_callback as a, append as b, attr as c, check_outros as d, create_in_transition as e, create_out_transition as f, destroy_each as g, detach as h, is_function as i, element as j, group_outros as k, init as l, insert as m, listen as n, onMount as o, noop as p, select_option as q, run_all as r, safe_not_equal as s, select_value as t, set_input_value as u, set_style as v, space as w, svg_element as x, text as y, transition_in as z };
+export { set_input_value as A, svg_element as B, bubble as C, create_slot as D, update_slot as E, set_style as F, select_option as G, select_value as H, text as I, SvelteComponent as S, append as a, attr as b, component_subscribe as c, create_component as d, destroy_component as e, detach as f, element as g, init as h, is_function as i, insert as j, set_store_value as k, space as l, mount_component as m, transition_out as n, onMount as o, listen as p, noop as q, add_render_callback as r, safe_not_equal as s, transition_in as t, check_outros as u, create_in_transition as v, create_out_transition as w, destroy_each as x, group_outros as y, run_all as z };
