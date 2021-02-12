@@ -165,7 +165,7 @@ function create_fragment(ctx) {
         <a target="_blank" rel="noopener" class="hover:underline" href="https://www.derpycoder.com">DerpyCoder</a>`;
 
 			attr(header, "class", "mt-10 mb-10");
-			attr(main, "class", "w-11/12 mb-6 xs:w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12\n  2xl:2-5/12");
+			attr(main, "class", "w-11/12 xs:w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12\n  2xl:2-5/12");
 			attr(p, "class", "text-white");
 			attr(footer, "class", "mb-3");
 		},
