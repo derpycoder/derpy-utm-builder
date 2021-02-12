@@ -1,4 +1,6 @@
 <script>
+  import { fly } from "svelte/transition";
+  import { flip } from "svelte/animate";
   import copy from "copy-text-to-clipboard";
   import confetti from "canvas-confetti";
 
@@ -125,12 +127,6 @@
     tmp.splice(id, 1);
 
     utmParams = [...tmp];
-
-    iziToast.error({
-      title: "OK",
-      message: "Deleted Row!",
-      position: "topLeft"
-    });
   };
 
   let builtURL = "https://www.derpycoder.com";
@@ -383,7 +379,10 @@
         </thead>
         <tbody>
           {#each utmParams as utmParam, id}
-            <tr class="even:bg-gray-100">
+            <tr
+              class="even:bg-gray-100"
+              out:fly={{ y: -50, duration: 100 }}
+              in:fly={{ y: -50, duration: 300 }}>
               <td>
                 <svg
                   class="w-4 h-4 text-gray-500 cursor-move select-none
