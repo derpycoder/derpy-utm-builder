@@ -1,6 +1,18 @@
 <script>
     import { blogURL, formatOptions } from '../common/constants';
-    export let config;
+    import { config } from "../stores/store";
+    import { formatters } from "../common/utils";
+
+    $: {
+        const format = formatters[$config.format];
+        const { campaign, terms } = $config;
+
+        $config = {
+            ...$config,
+            campaign: format(campaign),
+            terms: format(terms)
+        };
+    }
 </script>
 
 <div class="relative flex flex-col justify-between inline-block text-left">
@@ -20,7 +32,7 @@
             <input name="url" class="text-gray-600 flex-1 block w-full px-4 py-2 border
     border-gray-300 rounded-none outline-none focus:ring-1
     focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md
-    sm:text-sm" bind:value={config.url} placeholder={blogURL} />
+    sm:text-sm" bind:value={$config.url} placeholder={blogURL} />
         </div>
     </div>
     <div class="grid grid-cols-3 gap-4">
@@ -28,7 +40,7 @@
             <label class="font-semibold text-gray-500 ml-1" title="Format of Params" for="format">
                 Format<span class="text-sm text-red-500">*</span>
             </label>
-            <select id="format" name="format" autocomplete="country" bind:value={config.format} class="text-gray-600 w-full block px-3 py-2 text-right bg-white
+            <select id="format" name="format" autocomplete="country" bind:value={$config.format} class="text-gray-600 w-full block px-3 py-2 text-right bg-white
     border border-gray-300 rounded-md shadow-sm outline-none
     appearance-none focus:ring-1 focus:outline-none
     focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -44,7 +56,7 @@
             </label>
             <input name="campaign" id="campaign" class="text-gray-600 w-full px-4 py-2 border border-gray-300
     rounded-md outline-none focus:ring-1 focus:ring-indigo-500
-    focus:border-indigo-500 sm:text-sm" bind:value={config.campaign} placeholder="Campaign" />
+    focus:border-indigo-500 sm:text-sm" bind:value={$config.campaign} placeholder="Campaign" />
         </div>
         <div>
             <label class="font-semibold text-gray-500 ml-1" title="Keywords Associated" for="terms">
@@ -52,7 +64,7 @@
             </label>
             <input name="terms" id="terms" class="text-gray-600 w-full px-4 py-2 border border-gray-300
     rounded-md outline-none focus:ring-1 focus:ring-indigo-500
-    focus:border-indigo-500 sm:text-sm" bind:value={config.terms} placeholder="Terms" />
+    focus:border-indigo-500 sm:text-sm" bind:value={$config.terms} placeholder="Terms" />
         </div>
     </div>
 </div>
