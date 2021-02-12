@@ -343,6 +343,7 @@
                 <div>
                     <label class="font-semibold text-gray-500 ml-1" title="Format of Params" for="format">
                         Format
+                        <span class="text-sm text-red-500">*</span>
                     </label>
                     <select id="format" name="format" autocomplete="country" bind:value={config.format} class="text-gray-600 w-full block px-3 py-2 text-right bg-white
             border border-gray-300 rounded-md shadow-sm outline-none
