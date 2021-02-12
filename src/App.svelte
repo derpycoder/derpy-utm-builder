@@ -341,7 +341,7 @@
             </div>
             <div class="grid grid-cols-3 gap-4">
                 <div>
-                    <label class="font-semibold text-gray-500 ml-1" for="format">
+                    <label class="font-semibold text-gray-500 ml-1" title="Format of Params" for="format">
                         Format
                     </label>
                     <select id="format" name="format" autocomplete="country" bind:value={config.format} class="text-gray-600 w-full block px-3 py-2 text-right bg-white
@@ -354,7 +354,8 @@
                     </select>
                 </div>
                 <div>
-                    <label class="font-semibold text-gray-500 ml-1" for="campaign">
+                    <label class="font-semibold text-gray-500 ml-1" title="Required: Black Friday, Cyber Monday, ..."
+                        for="campaign">
                         Campaign
                         <span class="text-sm text-red-500">*</span>
                     </label>
@@ -363,7 +364,7 @@
             focus:border-indigo-500 sm:text-sm" bind:value={config.campaign} placeholder="Campaign" />
                 </div>
                 <div>
-                    <label class="font-semibold text-gray-500 ml-1" for="terms">
+                    <label class="font-semibold text-gray-500 ml-1" title="Keywords Associated" for="terms">
                         Terms
                     </label>
                     <input name="terms" id="terms" class="text-gray-600 w-full px-4 py-2 border border-gray-300
@@ -379,15 +380,16 @@
             <table class="bg-white border-collapse table-auto">
                 <thead class="text-left text-center">
                     <tr class="text-gray-500 border-b border-gray-300">
-                        <th class="w-1/4 px-4 py-2 cursor-pointer">
+                        <th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Newsletter, Website, App">
                             Source
                             <span class="text-sm text-red-500">*</span>
                         </th>
-                        <th class="w-1/4 px-4 py-2 cursor-pointer" title="Via">
+                        <th class="w-1/4 px-4 py-2 cursor-pointer"
+                            title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral">
                             Medium
                             <span class="text-sm text-red-500">*</span>
                         </th>
-                        <th class="w-1/4 px-4 py-2 cursor-pointer" title="For A/B Testing Same Link">
+                        <th class="w-1/4 px-4 py-2 cursor-pointer" title="Sub Reddit, Groups, ...">
                             Content
                         </th>
                         <th class="w-1/4 px-4 py-2 cursor-pointer">Actions</th>
