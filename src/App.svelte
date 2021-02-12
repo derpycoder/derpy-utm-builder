@@ -1,4 +1,6 @@
 <script>
+  import copy from 'copy-text-to-clipboard'
+
   const formatOptions = [
     'Title Case',
     'small case',
@@ -137,6 +139,10 @@
     })
 
     utmParams = tmp
+  }
+
+  const copyURL = (id) => {
+    copy('🦄🌈')
   }
 </script>
 
@@ -334,7 +340,8 @@
                   class="inline-flex items-center p-1 text-sm font-medium
                   text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50
                   focus:outline-none focus:ring-2 focus:ring-offset-2
-                  focus:ring-indigo-500">
+                  focus:ring-indigo-500"
+                  on:click={() => copyURL(id)}>
                   <svg
                     class="h-5 text-gray-500"
                     xmlns="http://www.w3.org/2000/svg"
