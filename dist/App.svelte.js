@@ -380,7 +380,7 @@ function create_fragment(ctx) {
 			a0.innerHTML = `<img loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"/>`;
 			t0 = space();
 			header = element("header");
-			header.innerHTML = `<h1 class="text-4xl font-bold text-white">UTM Builder</h1>`;
+			header.innerHTML = `<h1 class="text-4xl font-bold text-white">Derpy UTM Builder</h1>`;
 			t2 = space();
 			main = element("main");
 			section0 = element("section");
