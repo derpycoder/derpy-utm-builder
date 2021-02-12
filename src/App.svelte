@@ -10,13 +10,36 @@
     ];
 
     const formatters = {
-        "Title Case": () => { },
-        "Capital case": () => { },
-        "kebab-case": () => { },
-        "plus+case": () => { },
-        "snake_case": () => { },
-        "camelCase": () => { },
-        "PascalCase": () => { },
+        "Title Case": (val) => {
+            if(!val) {
+                return "";
+            }
+            const titleCase = val.toLowerCase()
+                .split(' ')
+                .map((word) => {
+                    return word.replace(word[0], word[0] && word[0].toUpperCase());
+                });
+            
+            return titleCase.join(' ');
+        },
+        "Capital case": (val) => {
+            return val.toUpperCase();
+        },
+        "kebab-case": (val) => {
+            return val.toUpperCase();
+        },
+        "plus+case": (val) => {
+            return val.toUpperCase();
+        },
+        "snake_case": (val) => {
+            return val.toUpperCase();
+        },
+        "camelCase": (val) => {
+            return val.toUpperCase();
+        },
+        "PascalCase": (val) => {
+            return val.toUpperCase();
+        },
     };
 
     const sources = [
@@ -37,6 +60,13 @@
         "Direct",
         "Indirect"
     ];
+
+    let config = {
+        url: "https://www.derpycoder.com",
+        format: "Title Case",
+        campaign: "Wuba Luba Dub Dub",
+        terms: "Wuba Luba Dub Dub",
+    };
 
     let utmParams = [
         {
@@ -78,6 +108,27 @@
             ...tmp,
         ];
     };
+
+    $: {
+        const format = formatters[config.format];
+        const { campaign, terms } = config;
+        
+        config = {
+            ...config,
+            campaign: format(campaign),
+            terms: format(terms),
+        };
+
+        const tmp = utmParams.map(({source, medium, content}) => {
+            return {
+                source: format(source),
+                medium: format(medium),
+                content: format(content),
+            };
+        });
+
+        utmParams = tmp;
+    };
 </script>
 
 <a target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail"
@@ -107,22 +158,22 @@
                 <div class="flex w-full rounded-md shadow-sm">
                     <input name="url"
                         class="flex-1 block w-full px-4 py-2 border border-gray-300 rounded-none outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm"
-                        placeholder="https://www.derpycoder.com">
+                        bind:value={config.url} placeholder="https://www.derpycoder.com">
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-4">
                 <select id="country" name="country" autocomplete="country"
-                    class="block px-3 py-2 text-right bg-white border border-gray-300 rounded-md shadow-sm outline-none appearance-none focus:ring-1 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    bind:value={config.format} class="block px-3 py-2 text-right bg-white border border-gray-300 rounded-md shadow-sm outline-none appearance-none focus:ring-1 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     {#each formatOptions as option}
                     <option>{option}</option>
                     {/each}
                 </select>
                 <input name="campaign"
                     class="px-4 py-2 border border-gray-300 rounded-none rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Campaign">
+                    bind:value={config.campaign} placeholder="Campaign">
                 <input name="terms"
                     class="px-4 py-2 border border-gray-300 rounded-none rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="Terms">
+                    bind:value={config.terms} placeholder="Terms">
             </div>
         </div>
     </section>
