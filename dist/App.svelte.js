@@ -48,7 +48,7 @@ function get_each_context_1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (372:24) {#each formatOptions as option}
+// (374:24) {#each formatOptions as option}
 function create_each_block_1(ctx) {
 	let option;
 	let t_value = /*option*/ ctx[33] + "";
@@ -73,7 +73,7 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (420:20) {#each utmParams as utmParam, id}
+// (422:20) {#each utmParams as utmParam, id}
 function create_each_block(ctx) {
 	let tr;
 	let td0;
@@ -827,9 +827,12 @@ function instance($$self, $$props, $$invalidate) {
 	let mounted = false;
 
 	onMount(async () => {
-		const tmp = JSON.parse(localStorage.derpy_utm_builder);
-		$$invalidate(0, config = tmp.config);
-		$$invalidate(1, utmParams = tmp.utmParams);
+		if (localStorage.derpy_utm_builder) {
+			const tmp = JSON.parse(localStorage.derpy_utm_builder);
+			$$invalidate(0, config = tmp.config);
+			$$invalidate(1, utmParams = tmp.utmParams);
+		}
+
 		$$invalidate(10, mounted = true);
 	});
 
