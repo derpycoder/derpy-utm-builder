@@ -454,7 +454,7 @@
                 </tbody>
             </table>
         </div>
-        <textarea class="resize-none w-full text-center text-gray-400 outline-none focus:ring-2
+        <textarea class="p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2
       focus:ring-indigo-500 focus:border-indigo-500 rounded-md" id="story" name="story" rows="3">{builtURL}</textarea>
     </section>
 </main>
