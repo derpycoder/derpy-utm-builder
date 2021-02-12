@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { initialUTMParams, blogURL } from "../common/constants.js";
+import { initialUTMParams, blogURL } from "../common/constants";
 
 export const config = writable({
     url: "",

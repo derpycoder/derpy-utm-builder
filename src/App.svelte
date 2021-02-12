@@ -9,6 +9,7 @@
     import AffiliateSection from "./components/AffiliateSection.svelte";
     import GitHubRibbon from "./components/GitHubRibbon.svelte";
     import ThemeSwitcher from "./components/ThemeSwitcher.svelte";
+    import SectionContainer from "./components/SectionContainer.svelte";
 
     initTheme();
 
@@ -37,16 +38,16 @@
 
 <main class="w-11/12 mb-6 xs:w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12
   2xl:2-5/12">
-    <section class="relative p-8 mb-6 bg-white rounded-lg shadow-2xl">
+    <SectionContainer>
         <TopSection />
-    </section>
+    </SectionContainer>
 
-    <section class="relative p-8 pb-3 bg-white rounded-lg shadow-2xl">
+    <SectionContainer>
         <BottomSection />
         <textarea
             class="p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
             id="story" name="story" rows="3">{$builtURL}</textarea>
-    </section>
+    </SectionContainer>
 </main>
 
 <footer class="mb-3">
