@@ -7,6 +7,7 @@
     import TopSection from "./components/TopSection.svelte";
     import BottomSection from "./components/BottomSection.svelte";
     import AffiliateSection from "./components/AffiliateSection.svelte";
+    import GitHubRibbon from "./components/GitHubRibbon.svelte";
 
     initTheme();
 
@@ -27,12 +28,7 @@
     }
 </script>
 
-<a class="hidden md:block" target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail" style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999; width:
-  149px; height: 149px;">
-    <img loading="lazy" width="149" height="149"
-        src="https://github.blog/wp-content/uploads/2008/12/forkme_right_white_ffffff.png?resize=149%2C149"
-        class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" />
-</a>
+<GitHubRibbon />
 
 <header class="mt-10 mb-10">
     <h1 class="text-4xl font-bold text-white">Derpy UTM Builder</h1>
@@ -46,8 +42,9 @@
 
     <section class="relative p-8 pb-3 bg-white rounded-lg shadow-2xl">
         <BottomSection />
-        <textarea class="p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2
-      focus:ring-indigo-500 focus:border-indigo-500 rounded-md" id="story" name="story" rows="3">{$builtURL}</textarea>
+        <textarea
+            class="p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+            id="story" name="story" rows="3">{$builtURL}</textarea>
     </section>
 </main>
 
