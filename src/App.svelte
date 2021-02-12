@@ -55,7 +55,9 @@
         let tmp = utmParams;
 
         tmp.splice(id + 1, 0, {
-            ...utmParams[id],
+            source: "",
+            medium: "",
+            content: "",
         });
 
         utmParams = [
@@ -156,17 +158,17 @@
                         <td>
                             <input list="source" name="source"
                                 class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
-                                placeholder="Reddit" value={utmParam.source} required>
+                                placeholder="Source" bind:value={utmParam.source} required>
                         </td>
                         <td>
                             <input list="medium" name="medium"
                                 class="flex-1 block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
-                                placeholder="Social" value={utmParam.medium} required>
+                                placeholder="Medium" bind:value={utmParam.medium} required>
                         </td>
                         <td>
                             <input name="content"
                                 class="block w-full px-4 py-2 text-gray-600 truncate outline-none sm:text-sm bg-transparent"
-                                value={utmParam.content} placeholder="Content">
+                                bind:value={utmParam.content} placeholder="Content">
                         </td>
                         <td class="flex justify-around py-1.5">
                             <button type="button w-full" on:click={() => addUTMRecord(id)}
