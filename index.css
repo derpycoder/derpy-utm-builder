@@ -1,0 +1,24 @@
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.w-referral {
+  width: 300.75px;
+  min-width: 300.75px;
+  max-width: 300.75px;
+
+  margin: 0 auto;
+}

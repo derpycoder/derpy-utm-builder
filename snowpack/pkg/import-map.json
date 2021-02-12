@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "canvas-confetti": "./canvas-confetti.js",
+    "copy-text-to-clipboard": "./copy-text-to-clipboard.js",
+    "svelte": "./svelte.js",
+    "svelte/animate": "./svelte/animate.js",
+    "svelte/internal": "./svelte/internal.js",
+    "svelte/transition": "./svelte/transition.js"
+  }
+}
