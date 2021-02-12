@@ -1,3 +1,25 @@
+<script>
+    const formatOptions = [
+        "Title Case",
+        "Capital case",
+        "kebab-case",
+        "plus+case",
+        "snake_case",
+        "camelCase",
+        "PascalCase",
+    ];
+
+    const formatters = {
+        "Title Case": () => { },
+        "Capital case": () => { },
+        "kebab-case": () => { },
+        "plus+case": () => { },
+        "snake_case": () => { },
+        "camelCase": () => { },
+        "PascalCase": () => { },
+    };
+</script>
+
 <a target="_blank" rel="noopener" href="https://github.com/abhijit-kar/snowtail"
     style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999; width: 149px; height: 149px;">
     <img loading="lazy" width="149" height="149"
@@ -31,13 +53,9 @@
             <div class="grid grid-cols-3 gap-4">
                 <select id="country" name="country" autocomplete="country"
                     class="block px-3 py-2 text-right bg-white border border-gray-300 rounded-md shadow-sm outline-none appearance-none focus:ring-1 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option>Title Case</option>
-                    <option>Capital case</option>
-                    <option>kebab-case</option>
-                    <option>plus+case</option>
-                    <option>snake_case</option>
-                    <option>camelCase</option>
-                    <option>PascalCase</option>
+                    {#each formatOptions as option}
+                    <option>{option}</option>
+                    {/each}
                 </select>
                 <input list="campaign" name="browser"
                     class="px-4 py-2 border border-gray-300 rounded-none rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
