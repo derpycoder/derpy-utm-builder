@@ -48,7 +48,7 @@ function get_each_context_1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (374:24) {#each formatOptions as option}
+// (373:24) {#each formatOptions as option}
 function create_each_block_1(ctx) {
 	let option;
 	let t_value = /*option*/ ctx[33] + "";
@@ -73,7 +73,7 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (422:20) {#each utmParams as utmParam, id}
+// (418:20) {#each utmParams as utmParam, id}
 function create_each_block(ctx) {
 	let tr;
 	let td0;
@@ -401,10 +401,7 @@ function create_fragment(ctx) {
 			div5 = element("div");
 			div2 = element("div");
 			label1 = element("label");
-
-			label1.innerHTML = `Format
-                        <span class="text-sm text-red-500">*</span>`;
-
+			label1.innerHTML = `Format<span class="text-sm text-red-500">*</span>`;
 			t7 = space();
 			select = element("select");
 
@@ -415,10 +412,7 @@ function create_fragment(ctx) {
 			t8 = space();
 			div3 = element("div");
 			label2 = element("label");
-
-			label2.innerHTML = `Campaign
-                        <span class="text-sm text-red-500">*</span>`;
-
+			label2.innerHTML = `Campaign<span class="text-sm text-red-500">*</span>`;
 			t11 = space();
 			input1 = element("input");
 			t12 = space();
@@ -433,10 +427,8 @@ function create_fragment(ctx) {
 			table = element("table");
 			thead = element("thead");
 
-			thead.innerHTML = `<tr class="text-gray-500 border-b border-gray-300"><th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Newsletter, Website, App">Source
-                            <span class="text-sm text-red-500">*</span></th> 
-                        <th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral, Chat">Medium
-                            <span class="text-sm text-red-500">*</span></th> 
+			thead.innerHTML = `<tr class="text-gray-500 border-b border-gray-300"><th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Newsletter, Website, App">Source<span class="text-sm text-red-500">*</span></th> 
+                        <th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral, Chat">Medium<span class="text-sm text-red-500">*</span></th> 
                         <th class="w-1/4 px-4 py-2 cursor-pointer" title="Sub Reddit, Groups, ...">Content</th> 
                         <th class="w-1/4 px-4 py-2 cursor-pointer">Actions</th></tr>`;
 
@@ -478,6 +470,8 @@ function create_fragment(ctx) {
 			p.innerHTML = `Made with ❤️ by
         <a target="_blank" rel="noopener" class="hover:underline" href="https://www.derpycoder.com">DerpyCoder</a>`;
 
+			attr(a0, "id", "fork-btn");
+			attr(a0, "class", "hidden");
 			attr(a0, "target", "_blank");
 			attr(a0, "rel", "noopener");
 			attr(a0, "href", "https://github.com/abhijit-kar/snowtail");
