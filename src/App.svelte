@@ -148,7 +148,7 @@
     let { source, medium, content } = utmParams[selectedId];
 
     campaign = campaign.trim();
-    terms = campaign.trim();
+    terms = terms.trim();
     source = source.trim();
     medium = medium.trim();
     content = content.trim();
@@ -162,18 +162,20 @@
 
       if (medium) {
         tmp += `&utm_medium=${medium}`;
+
+        if (terms) {
+          tmp += `&utm_term=${terms}`;
+        }
+
+        if (content) {
+          tmp += `&utm_content=${content}`;
+        }
+
+        return tmp;
       }
     }
 
-    if (terms) {
-      tmp += `&utm_term=${terms}`;
-    }
-
-    if (content) {
-      tmp += `&utm_content=${content}`;
-    }
-
-    return tmp;
+    return "";
   };
 
   $: {
@@ -197,6 +199,7 @@
     utmParams = tmp;
 
     builtURL = buildURL(selectedId);
+    checkValidity();
   }
 
   const copyURL = id => {
@@ -211,6 +214,17 @@
       position: "topRight"
     });
   };
+
+  function checkValidity() {
+    utmParams = utmParams.map(params => {
+      const { source, medium } = params;
+
+      return {
+        ...params,
+        validity: config.campaign && source && medium
+      };
+    });
+  }
 
   function showConfetti() {
     function randomInRange(min, max) {
@@ -471,13 +485,13 @@
                 <button
                   id="copy-url"
                   type="button w-full"
-                  class="inline-flex items-center p-1 text-sm font-medium
+                  class={`inline-flex items-center p-1 text-sm font-medium
                   text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50
                   focus:outline-none focus:ring-2 focus:ring-offset-2
-                  focus:ring-indigo-500"
+                  focus:ring-indigo-500 ${utmParam.validity ? '' : 'cursor-default pointer-events-none'}`}
                   on:click={() => copyURL(id)}>
                   <svg
-                    class="h-5 text-gray-500"
+                    class={`h-5 ${utmParam.validity ? 'text-gray-500' : 'text-gray-300'}`}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
