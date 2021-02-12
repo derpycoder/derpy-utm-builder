@@ -4,12 +4,7 @@
     import { formatters } from "./common/utils";
     import { initTheme } from "./common/theme";
     import { config, utmParams, builtURL } from "./stores/store";
-    import TopSection from "./components/TopSection.svelte";
-    import BottomSection from "./components/BottomSection.svelte";
-    import AffiliateSection from "./components/AffiliateSection.svelte";
-    import GitHubRibbon from "./components/GitHubRibbon.svelte";
-    import ThemeSwitcher from "./components/ThemeSwitcher.svelte";
-    import SectionContainer from "./components/SectionContainer.svelte";
+    import { AffiliateSection, TopSection, BottomSection, GitHubRibbon, ThemeSwitcher, SectionContainer } from "./components";
 
     initTheme();
 

@@ -97,7 +97,6 @@
     }
 
     $: {
-        console.log($config.format)
         const format = formatters[$config.format];
 
         const tmp = $utmParams.map((param) => {
