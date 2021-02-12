@@ -125,6 +125,12 @@
     tmp.splice(id, 1);
 
     utmParams = [...tmp];
+
+    iziToast.error({
+      title: "OK",
+      message: "Deleted Row!",
+      position: "topLeft"
+    });
   };
 
   let builtURL = "https://www.derpycoder.com";
