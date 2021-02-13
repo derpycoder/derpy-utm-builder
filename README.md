@@ -1,5 +1,5 @@
 # Derpy UTM Builder
-> My take on UTM Campaign URL Builder to make life a bit easier.
+> My take on UTM Campaign URL Builder to make life a bit easier, made with Svelte, Tailwind & Snowpack
 
 ### Blog Post
 WIP
