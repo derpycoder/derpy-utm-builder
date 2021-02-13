@@ -30,7 +30,7 @@
         <div class="flex w-full rounded-md shadow-sm">
             <input autocomplete="on" name="url"
                 class="flex-1 block w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-none outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm"
-                bind:value={$config.url} placeholder={blogURL} autofocus />
+                bind:value={$config.url} placeholder={blogURL} />
         </div>
     </div>
     <div class="grid grid-cols-3 gap-4">
