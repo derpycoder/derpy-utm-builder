@@ -135,7 +135,6 @@ function create_fragment(ctx) {
 			attr(input0, "name", "url");
 			attr(input0, "class", "flex-1 block w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-none outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm");
 			attr(input0, "placeholder", blogURL);
-			input0.autofocus = true;
 			attr(div0, "class", "flex w-full rounded-md shadow-sm");
 			attr(div1, "class", "flex mb-5");
 			attr(label1, "class", "ml-1 font-semibold text-gray-500");
@@ -197,7 +196,6 @@ function create_fragment(ctx) {
 			append(div4, t11);
 			append(div4, input2);
 			set_input_value(input2, /*$config*/ ctx[0].terms);
-			input0.focus();
 
 			if (!mounted) {
 				dispose = [
