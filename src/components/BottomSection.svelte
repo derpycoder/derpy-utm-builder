@@ -150,18 +150,15 @@
             {#each $utmParams as utmParam, id}
             <tr class="even:bg-gray-100" out:fly={{ y: -50, duration: 100 }} in:fly={{ y: -50, duration: 300 }}>
                 <td>
-                    <input name="source" class="text-center flex-1 block w-full px-4 py-2 text-gray-600
-          truncate outline-none sm:text-sm bg-transparent" placeholder="Source" bind:value={utmParam.source}
+                    <input autocomplete="on" name="source" class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm" placeholder="Source" bind:value={utmParam.source}
                         on:focus={()=> selectedId = id} required />
                 </td>
                 <td>
-                    <input name="medium" class="text-center flex-1 block w-full px-4 py-2 text-gray-600
-          truncate outline-none sm:text-sm bg-transparent" placeholder="Medium" bind:value={utmParam.medium}
+                    <input autocomplete="on" name="medium" class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm" placeholder="Medium" bind:value={utmParam.medium}
                         on:focus={()=> selectedId = id} required />
                 </td>
                 <td>
-                    <input name="content" class="text-center block w-full px-4 py-2 text-gray-600
-          truncate outline-none sm:text-sm bg-transparent" bind:value={utmParam.content} on:focus={()=>
+                    <input autocomplete="on" name="content" class="block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm" bind:value={utmParam.content} on:focus={()=>
                     selectedId = id} placeholder="Content" />
                 </td>
                 <td class="flex justify-around py-1.5">
