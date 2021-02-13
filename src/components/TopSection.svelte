@@ -14,7 +14,7 @@
     }
 </script>
 
-<div class="relative flex flex-col justify-between inline-block text-left">
+<form on:submit|preventDefault class="relative flex flex-col justify-between inline-block text-left">
     <div class="flex mb-5">
         <label for="company_website"
             class="inline-flex items-center px-3 px-4 py-2 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
@@ -63,4 +63,4 @@
                 bind:value={$config.terms} placeholder="Terms" />
         </div>
     </div>
-</div>
+</form>
