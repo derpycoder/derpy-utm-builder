@@ -14,6 +14,17 @@ export const formatters = {
             })
             .join(" ");
     },
+    "plausible+case": val => {
+        if (!val) {
+            return "";
+        }
+
+        return val
+            .toLowerCase()
+            .replace(stripSeparatorRegex, " ")
+            .split(" ")
+            .join("+");
+    },
     "lower case": val => {
         if (!val) {
             return "";
@@ -36,18 +47,7 @@ export const formatters = {
             .split(" ")
             .join("-");
     },
-    "plus+case": val => {
-        if (!val) {
-            return "";
-        }
-
-        return val
-            .toLowerCase()
-            .replace(stripSeparatorRegex, " ")
-            .split(" ")
-            .join("+");
-    },
-    snake_case: val => {
+    "snake_case": val => {
         if (!val) {
             return "";
         }
@@ -58,5 +58,15 @@ export const formatters = {
             .split(" ")
             .join("_");
     },
-    "fReE ForM": val => val
+    "fREe+CaSE": val => {
+        if (!val) {
+            return "";
+        }
+
+        return val
+            .replace(stripSeparatorRegex, " ")
+            .split(" ")
+            .join("+");
+    },
+    "fReE FoRm": val => val
 };
