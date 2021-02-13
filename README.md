@@ -5,12 +5,14 @@
 [Derpy UTM Builder: A Campaign URL Builder made with Svelte, Tailwind & Snowpack](https://www.derpycoder.com/derpy-utm-builder-a-campaign-url-builder-made-with-svelte-tailwind-snowpack/)
 
 ### Tech Used
-1. Mockup using [Snowtail](https://www.derpycoder.com/snowtail-snowpack-tailwind-starter-to-speed-up-theme-dev/).
+See blog post, for links to everything.
+
+1. Snowtail.
 1. Svelte.
 1. Snowpack.
-1. Tailwind.
-1. Canvas Confetti
-1. izi Toast
+1. Tailwind CSS.
+1. Hero Icons.
+1. Canvas Confetti & izi Toast for fun. 😜
 
 ### Features
 - [x] Formatters to enforce a certain standard. (`Title Case`, `lower case`, `Plus+Case`, `plausible+case`, `kebab-case`, `snake_case`, `fREe+CaSE`, `fReE FoRm`)
