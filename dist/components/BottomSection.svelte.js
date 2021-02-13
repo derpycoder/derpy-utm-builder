@@ -566,7 +566,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	const copyURL = id => {
 		$$invalidate(0, selectedId = id);
-		copy(encodeURI($builtURL));
+		copy(encodeURI(buildURL(id)));
 		showConfetti();
 
 		iziToast.success({
