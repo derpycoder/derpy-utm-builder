@@ -5,7 +5,7 @@
 WIP
 
 ## On High Demand
-[ ] Custom Drop Down for each field, with ability to store/edit/delete inputs.
-[ ] Import (CSV, RSS, JSON)
-[ ] Export (CSV, JSON)
-[ ] URL Shortener (TinyURL, Bit.ly)
+- [ ] Custom Drop Down for each field, with ability to store/edit/delete inputs.
+- [ ] Import (CSV, RSS, JSON)
+- [ ] Export (CSV, JSON)
+- [ ] URL Shortener (TinyURL, Bit.ly)
