@@ -111,7 +111,7 @@
 
     const copyURL = id => {
         selectedId = id;
-        copy(encodeURI($builtURL));
+        copy(encodeURI(buildURL(id)));
 
         showConfetti();
 
