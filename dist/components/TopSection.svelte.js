@@ -4,6 +4,7 @@ import {
 	add_render_callback,
 	append,
 	attr,
+	bubble,
 	component_subscribe,
 	destroy_each,
 	detach,
@@ -12,6 +13,7 @@ import {
 	insert,
 	listen,
 	noop,
+	prevent_default,
 	run_all,
 	safe_not_equal,
 	select_option,
@@ -27,14 +29,14 @@ import { config } from "../stores/store.js";
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[5] = list[i];
+	child_ctx[6] = list[i];
 	return child_ctx;
 }
 
-// (46:16) {#each formatOptions as option}
+// (43:16) {#each formatOptions as option}
 function create_each_block(ctx) {
 	let option;
-	let t_value = /*option*/ ctx[5] + "";
+	let t_value = /*option*/ ctx[6] + "";
 	let t;
 	let option_value_value;
 
@@ -42,7 +44,7 @@ function create_each_block(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*option*/ ctx[5];
+			option.__value = option_value_value = /*option*/ ctx[6];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -57,7 +59,7 @@ function create_each_block(ctx) {
 }
 
 function create_fragment(ctx) {
-	let div6;
+	let form;
 	let div1;
 	let label0;
 	let t0;
@@ -90,7 +92,7 @@ function create_fragment(ctx) {
 
 	return {
 		c() {
-			div6 = element("div");
+			form = element("form");
 			div1 = element("div");
 			label0 = element("label");
 
@@ -128,47 +130,51 @@ function create_fragment(ctx) {
 			t11 = space();
 			input2 = element("input");
 			attr(label0, "for", "company_website");
-			attr(label0, "class", "inline-flex items-center px-3 px-4 py-2 text-sm text-gray-500\n  border border-r-0 border-gray-300 rounded-l-md bg-gray-50");
+			attr(label0, "class", "inline-flex items-center px-3 px-4 py-2 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50");
+			attr(input0, "autocomplete", "on");
 			attr(input0, "name", "url");
-			attr(input0, "class", "text-gray-600 flex-1 block w-full px-4 py-2 border\n    border-gray-300 rounded-none outline-none focus:ring-1\n    focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md\n    sm:text-sm");
+			attr(input0, "class", "flex-1 block w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-none outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded-r-md sm:text-sm");
 			attr(input0, "placeholder", blogURL);
+			input0.autofocus = true;
 			attr(div0, "class", "flex w-full rounded-md shadow-sm");
 			attr(div1, "class", "flex mb-5");
-			attr(label1, "class", "font-semibold text-gray-500 ml-1");
+			attr(label1, "class", "ml-1 font-semibold text-gray-500");
 			attr(label1, "title", "Format of Params");
 			attr(label1, "for", "format");
 			attr(select, "id", "format");
 			attr(select, "name", "format");
 			attr(select, "autocomplete", "country");
-			attr(select, "class", "text-gray-600 w-full block px-3 py-2 text-right bg-white\n    border border-gray-300 rounded-md shadow-sm outline-none\n    appearance-none focus:ring-1 focus:outline-none\n    focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm");
-			if (/*$config*/ ctx[0].format === void 0) add_render_callback(() => /*select_change_handler*/ ctx[2].call(select));
-			attr(label2, "class", "font-semibold text-gray-500 ml-1");
+			attr(select, "class", "block w-full px-3 py-2 text-right text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm outline-none appearance-none focus:ring-1 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm");
+			if (/*$config*/ ctx[0].format === void 0) add_render_callback(() => /*select_change_handler*/ ctx[3].call(select));
+			attr(label2, "class", "ml-1 font-semibold text-gray-500");
 			attr(label2, "title", "Required: Black Friday, Cyber Monday, ...");
 			attr(label2, "for", "campaign");
+			attr(input1, "autocomplete", "on");
 			attr(input1, "name", "campaign");
 			attr(input1, "id", "campaign");
-			attr(input1, "class", "text-gray-600 w-full px-4 py-2 border border-gray-300\n    rounded-md outline-none focus:ring-1 focus:ring-indigo-500\n    focus:border-indigo-500 sm:text-sm");
+			attr(input1, "class", "w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm");
 			attr(input1, "placeholder", "Campaign");
-			attr(label3, "class", "font-semibold text-gray-500 ml-1");
+			attr(label3, "class", "ml-1 font-semibold text-gray-500");
 			attr(label3, "title", "Keywords Associated");
 			attr(label3, "for", "terms");
+			attr(input2, "autocomplete", "on");
 			attr(input2, "name", "terms");
 			attr(input2, "id", "terms");
-			attr(input2, "class", "text-gray-600 w-full px-4 py-2 border border-gray-300\n    rounded-md outline-none focus:ring-1 focus:ring-indigo-500\n    focus:border-indigo-500 sm:text-sm");
+			attr(input2, "class", "w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm");
 			attr(input2, "placeholder", "Terms");
 			attr(div5, "class", "grid grid-cols-3 gap-4");
-			attr(div6, "class", "relative flex flex-col justify-between inline-block text-left");
+			attr(form, "class", "relative flex flex-col justify-between inline-block text-left");
 		},
 		m(target, anchor) {
-			insert(target, div6, anchor);
-			append(div6, div1);
+			insert(target, form, anchor);
+			append(form, div1);
 			append(div1, label0);
 			append(div1, t0);
 			append(div1, div0);
 			append(div0, input0);
 			set_input_value(input0, /*$config*/ ctx[0].url);
-			append(div6, t1);
-			append(div6, div5);
+			append(form, t1);
+			append(form, div5);
 			append(div5, div2);
 			append(div2, label1);
 			append(div2, t4);
@@ -191,13 +197,15 @@ function create_fragment(ctx) {
 			append(div4, t11);
 			append(div4, input2);
 			set_input_value(input2, /*$config*/ ctx[0].terms);
+			input0.focus();
 
 			if (!mounted) {
 				dispose = [
-					listen(input0, "input", /*input0_input_handler*/ ctx[1]),
-					listen(select, "change", /*select_change_handler*/ ctx[2]),
-					listen(input1, "input", /*input1_input_handler*/ ctx[3]),
-					listen(input2, "input", /*input2_input_handler*/ ctx[4])
+					listen(input0, "input", /*input0_input_handler*/ ctx[2]),
+					listen(select, "change", /*select_change_handler*/ ctx[3]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[4]),
+					listen(input2, "input", /*input2_input_handler*/ ctx[5]),
+					listen(form, "submit", prevent_default(/*submit_handler*/ ctx[1]))
 				];
 
 				mounted = true;
@@ -246,7 +254,7 @@ function create_fragment(ctx) {
 		i: noop,
 		o: noop,
 		d(detaching) {
-			if (detaching) detach(div6);
+			if (detaching) detach(form);
 			destroy_each(each_blocks, detaching);
 			mounted = false;
 			run_all(dispose);
@@ -257,6 +265,10 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
 	let $config;
 	component_subscribe($$self, config, $$value => $$invalidate(0, $config = $$value));
+
+	function submit_handler(event) {
+		bubble($$self, event);
+	}
 
 	function input0_input_handler() {
 		$config.url = this.value;
@@ -299,6 +311,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	return [
 		$config,
+		submit_handler,
 		input0_input_handler,
 		select_change_handler,
 		input1_input_handler,

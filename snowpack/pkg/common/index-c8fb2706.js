@@ -141,6 +141,13 @@ function listen(node, event, handler, options) {
     node.addEventListener(event, handler, options);
     return () => node.removeEventListener(event, handler, options);
 }
+function prevent_default(fn) {
+    return function (event) {
+        event.preventDefault();
+        // @ts-ignore
+        return fn.call(this, event);
+    };
+}
 function attr(node, attribute, value) {
     if (value == null)
         node.removeAttribute(attribute);
@@ -239,14 +246,6 @@ function clear_rules() {
 let current_component;
 function set_current_component(component) {
     current_component = component;
-}
-function get_current_component() {
-    if (!current_component)
-        throw new Error('Function called outside component initialization');
-    return current_component;
-}
-function onMount(fn) {
-    get_current_component().$$.on_mount.push(fn);
 }
 // TODO figure out if we still want to support
 // shorthand events, or if we want to implement
@@ -615,4 +614,4 @@ class SvelteComponent {
     }
 }
 
-export { set_input_value as A, svg_element as B, bubble as C, create_slot as D, update_slot as E, set_style as F, select_option as G, select_value as H, text as I, SvelteComponent as S, append as a, attr as b, component_subscribe as c, create_component as d, destroy_component as e, detach as f, element as g, init as h, is_function as i, insert as j, set_store_value as k, space as l, mount_component as m, transition_out as n, onMount as o, listen as p, noop as q, add_render_callback as r, safe_not_equal as s, transition_in as t, check_outros as u, create_in_transition as v, create_out_transition as w, destroy_each as x, group_outros as y, run_all as z };
+export { svg_element as A, bubble as B, create_slot as C, update_slot as D, set_style as E, prevent_default as F, select_option as G, select_value as H, text as I, SvelteComponent as S, append as a, attr as b, component_subscribe as c, create_component as d, destroy_component as e, detach as f, element as g, init as h, is_function as i, insert as j, set_store_value as k, space as l, mount_component as m, transition_out as n, listen as o, noop as p, add_render_callback as q, check_outros as r, safe_not_equal as s, transition_in as t, create_in_transition as u, create_out_transition as v, destroy_each as w, group_outros as x, run_all as y, set_input_value as z };

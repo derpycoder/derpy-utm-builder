@@ -1,5 +1,5 @@
 import { c as cubicOut } from '../common/index-78b2aaa2.js';
-import { i as is_function } from '../common/index-5e76614d.js';
+import { i as is_function } from '../common/index-c8fb2706.js';
 
 function flip(node, animation, params = {}) {
     const style = getComputedStyle(node);

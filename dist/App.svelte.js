@@ -18,8 +18,6 @@ import {
 	transition_out
 } from "../snowpack/pkg/svelte/internal.js";
 
-import { onMount } from "../snowpack/pkg/svelte.js";
-import { initTheme } from "./common/index.js";
 import { config, utmParams, builtURL } from "./stores/store.js";
 
 import {
@@ -59,7 +57,7 @@ function create_default_slot_1(ctx) {
 	};
 }
 
-// (46:4) <SectionContainer>
+// (34:4) <SectionContainer>
 function create_default_slot(ctx) {
 	let bottomsection;
 	let t;
@@ -72,7 +70,7 @@ function create_default_slot(ctx) {
 			create_component(bottomsection.$$.fragment);
 			t = space();
 			textarea = element("textarea");
-			attr(textarea, "class", "p-2 resize-none w-full text-center text-gray-400 outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md");
+			attr(textarea, "class", "w-full p-2 text-center text-gray-400 rounded-md outline-none resize-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500");
 			attr(textarea, "id", "story");
 			attr(textarea, "name", "story");
 			attr(textarea, "rows", "3");
@@ -165,7 +163,7 @@ function create_fragment(ctx) {
         <a target="_blank" rel="noopener" class="hover:underline" href="https://www.derpycoder.com">DerpyCoder</a>`;
 
 			attr(header, "class", "mt-10 mb-10");
-			attr(main, "class", "w-11/12 xs:w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12\n  2xl:2-5/12");
+			attr(main, "class", "w-11/12 xs:w-10/12 sm:w-9/12 md:w-8/12 lg:w-7/12 xl:w-6/12 2xl:2-5/12");
 			attr(p, "class", "text-white");
 			attr(footer, "class", "mb-3");
 		},
@@ -190,14 +188,14 @@ function create_fragment(ctx) {
 		p(ctx, [dirty]) {
 			const sectioncontainer0_changes = {};
 
-			if (dirty & /*$$scope*/ 64) {
+			if (dirty & /*$$scope*/ 16) {
 				sectioncontainer0_changes.$$scope = { dirty, ctx };
 			}
 
 			sectioncontainer0.$set(sectioncontainer0_changes);
 			const sectioncontainer1_changes = {};
 
-			if (dirty & /*$$scope, $builtURL*/ 65) {
+			if (dirty & /*$$scope, $builtURL*/ 17) {
 				sectioncontainer1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -243,7 +241,6 @@ function instance($$self, $$props, $$invalidate) {
 	component_subscribe($$self, config, $$value => $$invalidate(1, $config = $$value));
 	component_subscribe($$self, utmParams, $$value => $$invalidate(2, $utmParams = $$value));
 	component_subscribe($$self, builtURL, $$value => $$invalidate(0, $builtURL = $$value));
-	initTheme();
 
 	if (localStorage.derpy_utm_builder) {
 		const tmp = JSON.parse(localStorage.derpy_utm_builder);
@@ -251,19 +248,12 @@ function instance($$self, $$props, $$invalidate) {
 		set_store_value(utmParams, $utmParams = tmp.utmParams, $utmParams);
 	}
 
-	const configSubscription = config.subscribe(persistData);
-	const paramsSubscription = utmParams.subscribe(persistData);
+	config.subscribe(persistData);
+	utmParams.subscribe(persistData);
 
 	function persistData() {
 		localStorage.derpy_utm_builder = JSON.stringify({ config: $config, utmParams: $utmParams });
 	}
-
-	onMount(() => {
-		return () => {
-			configSubscription.unsubscribe();
-			paramsSubscription.unsubscribe();
-		};
-	});
 
 	return [$builtURL];
 }

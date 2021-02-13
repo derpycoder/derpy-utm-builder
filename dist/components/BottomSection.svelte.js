@@ -43,7 +43,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (168:20) <Button on:click={()=> addUTMRecord(id)}>
+// (165:20) <Button on:click={()=> addUTMRecord(id)}>
 function create_default_slot_2(ctx) {
 	let svg;
 	let path;
@@ -72,7 +72,7 @@ function create_default_slot_2(ctx) {
 	};
 }
 
-// (175:20) <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
+// (172:20) <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
 function create_default_slot_1(ctx) {
 	let svg;
 	let path;
@@ -113,7 +113,7 @@ function create_default_slot_1(ctx) {
 	};
 }
 
-// (183:20) <Button on:click={()=> deleteUTMRecord(id)}>
+// (180:20) <Button on:click={()=> deleteUTMRecord(id)}>
 function create_default_slot(ctx) {
 	let svg;
 	let path;
@@ -250,16 +250,19 @@ function create_each_block(ctx) {
 			t4 = space();
 			create_component(button2.$$.fragment);
 			t5 = space();
+			attr(input0, "autocomplete", "on");
 			attr(input0, "name", "source");
-			attr(input0, "class", "text-center flex-1 block w-full px-4 py-2 text-gray-600\n          truncate outline-none sm:text-sm bg-transparent");
+			attr(input0, "class", "flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm");
 			attr(input0, "placeholder", "Source");
 			input0.required = true;
+			attr(input1, "autocomplete", "on");
 			attr(input1, "name", "medium");
-			attr(input1, "class", "text-center flex-1 block w-full px-4 py-2 text-gray-600\n          truncate outline-none sm:text-sm bg-transparent");
+			attr(input1, "class", "flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm");
 			attr(input1, "placeholder", "Medium");
 			input1.required = true;
+			attr(input2, "autocomplete", "on");
 			attr(input2, "name", "content");
-			attr(input2, "class", "text-center block w-full px-4 py-2 text-gray-600\n          truncate outline-none sm:text-sm bg-transparent");
+			attr(input2, "class", "block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm");
 			attr(input2, "placeholder", "Content");
 			attr(td3, "class", "flex justify-around py-1.5");
 			attr(tr, "class", "even:bg-gray-100");

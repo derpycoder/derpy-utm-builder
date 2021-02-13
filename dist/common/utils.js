@@ -5,7 +5,7 @@ export const formatters = {
         if (!val) {
             return "";
         }
-        const titleCase = val
+        return val
             .toLowerCase()
             .replace(stripSeparatorRegex, " ")
             .split(" ")
@@ -13,60 +13,73 @@ export const formatters = {
                 return word.replace(word[0], word[0] && word[0].toUpperCase());
             })
             .join(" ");
+    },
+    "plausible+case": val => {
+        if (!val) {
+            return "";
+        }
 
-        return titleCase;
+        return val
+            .toLowerCase()
+            .replace(stripSeparatorRegex, " ")
+            .split(" ")
+            .join("+");
+    },
+    "Plus+Case": val => {
+        if (!val) {
+            return "";
+        }
+        return val
+            .toLowerCase()
+            .replace(stripSeparatorRegex, " ")
+            .split(" ")
+            .map(word => {
+                return word.replace(word[0], word[0] && word[0].toUpperCase());
+            })
+            .join("+");
     },
     "lower case": val => {
         if (!val) {
             return "";
         }
 
-        const smallCase = val
+        return val
             .toLowerCase()
             .replace(stripSeparatorRegex, " ")
             .split(" ")
             .join(" ");
-
-        return smallCase;
     },
     "kebab-case": val => {
         if (!val) {
             return "";
         }
 
-        const kebabCase = val
+        return val
             .toLowerCase()
             .replace(stripSeparatorRegex, " ")
             .split(" ")
             .join("-");
-
-        return kebabCase;
     },
-    "plus+case": val => {
+    "snake_case": val => {
         if (!val) {
             return "";
         }
 
-        const plusCase = val
-            .toLowerCase()
-            .replace(stripSeparatorRegex, " ")
-            .split(" ")
-            .join("+");
-
-        return plusCase;
-    },
-    snake_case: val => {
-        if (!val) {
-            return "";
-        }
-
-        const snakeCase = val
+        return val
             .toLowerCase()
             .replace(stripSeparatorRegex, " ")
             .split(" ")
             .join("_");
-
-        return snakeCase;
     },
-    "fReE ForM": val => val
+    "fREe+CaSE": val => {
+        if (!val) {
+            return "";
+        }
+
+        return val
+            .replace(stripSeparatorRegex, " ")
+            .split(" ")
+            .join("+");
+    },
+    "fReE FoRm": val => val
 };

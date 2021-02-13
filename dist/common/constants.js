@@ -8,11 +8,13 @@ export const blogURL = "https://www.derpycoder.com";
 
 export const formatOptions = [
     "Title Case",
-    "plus+case",
+    "lower case",
+    "Plus+Case",
+    "plausible+case",
     "kebab-case",
     "snake_case",
-    "lower case",
-    "fReE ForM"
+    "fREe+CaSE",
+    "fReE FoRm",
 ];
 
 export const stripSeparatorRegex = /-|_|\+/g;
