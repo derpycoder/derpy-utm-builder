@@ -2,7 +2,7 @@
 > My take on UTM Campaign URL Builder to make life a bit easier, made with Svelte, Tailwind & Snowpack
 
 ### Blog Post
-WIP
+[Derpy UTM Builder: A Campaign URL Builder made with Svelte, Tailwind & Snowpack](https://www.derpycoder.com/derpy-utm-builder-a-campaign-url-builder-made-with-svelte-tailwind-snowpack/)
 
 ### Tech Used
 1. Mockup using [Snowtail](https://www.derpycoder.com/snowtail-snowpack-tailwind-starter-to-speed-up-theme-dev/).
