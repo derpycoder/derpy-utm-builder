@@ -49,12 +49,6 @@
             return blogURL;
         }
 
-        {
-            {/*  if (!validity) {
-            return "";
-        }  */}
-        }
-
         let tmp = url;
 
         let { source, medium, content } = $utmParams[selectedId];
