@@ -43,7 +43,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (165:20) <Button on:click={()=> addUTMRecord(id)}>
+// (169:20) <Button on:click={()=> addUTMRecord(id)}>
 function create_default_slot_2(ctx) {
 	let svg;
 	let path;
@@ -72,7 +72,7 @@ function create_default_slot_2(ctx) {
 	};
 }
 
-// (172:20) <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
+// (176:20) <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
 function create_default_slot_1(ctx) {
 	let svg;
 	let path;
@@ -113,7 +113,7 @@ function create_default_slot_1(ctx) {
 	};
 }
 
-// (180:20) <Button on:click={()=> deleteUTMRecord(id)}>
+// (184:20) <Button on:click={()=> deleteUTMRecord(id)}>
 function create_default_slot(ctx) {
 	let svg;
 	let path;
@@ -515,11 +515,19 @@ function instance($$self, $$props, $$invalidate) {
 	};
 
 	const buildURL = () => {
-		let { url, campaign, terms } = $config;
+		let { url, campaign, terms, validity } = $config;
 		url = url.trim();
 
 		if (!url) {
 			return blogURL;
+		}
+
+		{
+			{
+				
+			} /*  if (!validity) {
+return "";
+        }  */
 		}
 
 		let tmp = url;
@@ -530,26 +538,20 @@ function instance($$self, $$props, $$invalidate) {
 		medium = medium.trim();
 		content = content.trim();
 
-		if (campaign) {
+		if (campaign && source && medium) {
 			tmp += `?utm_campaign=${campaign}`;
+			tmp += `&utm_source=${source}`;
+			tmp += `&utm_medium=${medium}`;
 
-			if (source) {
-				tmp += `&utm_source=${source}`;
+			if (terms) {
+				tmp += `&utm_term=${terms}`;
 			}
 
-			if (medium) {
-				tmp += `&utm_medium=${medium}`;
-
-				if (terms) {
-					tmp += `&utm_term=${terms}`;
-				}
-
-				if (content) {
-					tmp += `&utm_content=${content}`;
-				}
-
-				return tmp;
+			if (content) {
+				tmp += `&utm_content=${content}`;
 			}
+
+			return tmp;
 		}
 
 		return "";
