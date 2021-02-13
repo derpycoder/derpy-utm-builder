@@ -43,7 +43,7 @@ function get_each_context(ctx, list, i) {
 	return child_ctx;
 }
 
-// (169:20) <Button on:click={()=> addUTMRecord(id)}>
+// (163:20) <Button on:click={()=> addUTMRecord(id)}>
 function create_default_slot_2(ctx) {
 	let svg;
 	let path;
@@ -72,7 +72,7 @@ function create_default_slot_2(ctx) {
 	};
 }
 
-// (176:20) <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
+// (170:20) <Button on:click={()=> copyURL(id)} disable={!utmParam.validity}>
 function create_default_slot_1(ctx) {
 	let svg;
 	let path;
@@ -113,7 +113,7 @@ function create_default_slot_1(ctx) {
 	};
 }
 
-// (184:20) <Button on:click={()=> deleteUTMRecord(id)}>
+// (178:20) <Button on:click={()=> deleteUTMRecord(id)}>
 function create_default_slot(ctx) {
 	let svg;
 	let path;
@@ -142,7 +142,7 @@ function create_default_slot(ctx) {
 	};
 }
 
-// (150:12) {#each $utmParams as utmParam, id}
+// (144:12) {#each $utmParams as utmParam, id}
 function create_each_block(ctx) {
 	let tr;
 	let td0;
@@ -520,14 +520,6 @@ function instance($$self, $$props, $$invalidate) {
 
 		if (!url) {
 			return blogURL;
-		}
-
-		{
-			{
-				
-			} /*  if (!validity) {
-return "";
-        }  */
 		}
 
 		let tmp = url;
