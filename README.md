@@ -9,6 +9,8 @@ WIP
 1. Svelte.
 1. Snowpack.
 1. Tailwind.
+1. Canvas Confetti
+1. izi Toast
 
 ### Features
 - [x] Formatters to enforce a certain standard. (`Title Case`, `lower case`, `Plus+Case`, `plausible+case`, `kebab-case`, `snake_case`, `fREe+CaSE`, `fReE FoRm`)
