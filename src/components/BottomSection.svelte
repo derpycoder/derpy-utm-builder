@@ -41,12 +41,18 @@
     };
 
     const buildURL = () => {
-        let { url, campaign, terms } = $config;
+        let { url, campaign, terms, validity } = $config;
 
         url = url.trim();
 
         if (!url) {
             return blogURL;
+        }
+
+        {
+            {/*  if (!validity) {
+            return "";
+        }  */}
         }
 
         let tmp = url;
@@ -59,26 +65,20 @@
         medium = medium.trim();
         content = content.trim();
 
-        if (campaign) {
+        if (campaign && source && medium) {
             tmp += `?utm_campaign=${campaign}`;
+            tmp += `&utm_source=${source}`;
+            tmp += `&utm_medium=${medium}`;
 
-            if (source) {
-                tmp += `&utm_source=${source}`;
+            if (terms) {
+                tmp += `&utm_term=${terms}`;
             }
 
-            if (medium) {
-                tmp += `&utm_medium=${medium}`;
-
-                if (terms) {
-                    tmp += `&utm_term=${terms}`;
-                }
-
-                if (content) {
-                    tmp += `&utm_content=${content}`;
-                }
-
-                return tmp;
+            if (content) {
+                tmp += `&utm_content=${content}`;
             }
+
+            return tmp;
         }
 
         return "";
@@ -150,15 +150,19 @@
             {#each $utmParams as utmParam, id}
             <tr class="even:bg-gray-100" out:fly={{ y: -50, duration: 100 }} in:fly={{ y: -50, duration: 300 }}>
                 <td>
-                    <input autocomplete="on" name="source" class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm" placeholder="Source" bind:value={utmParam.source}
-                        on:focus={()=> selectedId = id} required />
+                    <input autocomplete="on" name="source"
+                        class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm"
+                        placeholder="Source" bind:value={utmParam.source} on:focus={()=> selectedId = id} required />
                 </td>
                 <td>
-                    <input autocomplete="on" name="medium" class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm" placeholder="Medium" bind:value={utmParam.medium}
-                        on:focus={()=> selectedId = id} required />
+                    <input autocomplete="on" name="medium"
+                        class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm"
+                        placeholder="Medium" bind:value={utmParam.medium} on:focus={()=> selectedId = id} required />
                 </td>
                 <td>
-                    <input autocomplete="on" name="content" class="block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm" bind:value={utmParam.content} on:focus={()=>
+                    <input autocomplete="on" name="content"
+                        class="block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm"
+                        bind:value={utmParam.content} on:focus={()=>
                     selectedId = id} placeholder="Content" />
                 </td>
                 <td class="flex justify-around py-1.5">
