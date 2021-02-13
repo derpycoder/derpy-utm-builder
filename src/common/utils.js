@@ -25,6 +25,19 @@ export const formatters = {
             .split(" ")
             .join("+");
     },
+    "Plus+Case": val => {
+        if (!val) {
+            return "";
+        }
+        return val
+            .toLowerCase()
+            .replace(stripSeparatorRegex, " ")
+            .split(" ")
+            .map(word => {
+                return word.replace(word[0], word[0] && word[0].toUpperCase());
+            })
+            .join("+");
+    },
     "lower case": val => {
         if (!val) {
             return "";
