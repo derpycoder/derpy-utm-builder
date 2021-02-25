@@ -4,12 +4,11 @@
 
     $: {
         const format = formatters[$config.format];
-        const { campaign, terms } = $config;
+        const { campaign } = $config;
 
         $config = {
             ...$config,
             campaign: format(campaign),
-            terms: format(terms)
         };
     }
 </script>
@@ -33,10 +32,10 @@
                 bind:value={$config.url} placeholder={blogURL} />
         </div>
     </div>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 gap-4">
         <div>
             <label class="ml-1 font-semibold text-gray-500" title="Format of Params" for="format">
-                Format<span class="text-sm text-red-500">*</span>
+                Format
             </label>
             <select id="format" name="format" autocomplete="country" bind:value={$config.format}
                 class="block w-full px-3 py-2 text-right text-gray-600 bg-white border border-gray-300 rounded-md shadow-sm outline-none appearance-none focus:ring-1 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -48,19 +47,11 @@
         <div>
             <label class="ml-1 font-semibold text-gray-500" title="Required: Black Friday, Cyber Monday, ..."
                 for="campaign">
-                Campaign<span class="text-sm text-red-500">*</span>
+                Campaign
             </label>
             <input autocomplete="on" name="campaign" id="campaign"
                 class="w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 bind:value={$config.campaign} placeholder="Campaign" />
-        </div>
-        <div>
-            <label class="ml-1 font-semibold text-gray-500" title="Keywords Associated" for="terms">
-                Terms
-            </label>
-            <input autocomplete="on" name="terms" id="terms"
-                class="w-full px-4 py-2 text-gray-600 border border-gray-300 rounded-md outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                bind:value={$config.terms} placeholder="Terms" />
         </div>
     </div>
 </form>

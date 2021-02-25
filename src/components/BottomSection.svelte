@@ -3,7 +3,7 @@
     import { flip } from "svelte/animate";
     import copy from "copy-text-to-clipboard";
     import { config, utmParams, builtURL } from "../stores/store";
-    import { formatters, blogURL, showConfetti, initialUTMParams } from "../common";
+    import { formatters, blogURL, initialUTMParams } from "../common";
     import Button from "./Button.svelte";
 
     let selectedId = 0;
@@ -41,7 +41,7 @@
     };
 
     const buildURL = () => {
-        let { url, campaign, terms, validity } = $config;
+        let { url, campaign, validity } = $config;
 
         url = url.trim();
 
@@ -49,33 +49,28 @@
             return blogURL;
         }
 
-        let tmp = url;
+        let tmp = url, arr = [];
 
-        let { source, medium, content } = $utmParams[selectedId];
+        let { source, medium } = $utmParams[selectedId];
 
         campaign = campaign.trim();
-        terms = terms.trim();
         source = source.trim();
         medium = medium.trim();
-        content = content.trim();
 
-        if (campaign && source && medium) {
-            tmp += `?utm_campaign=${campaign}`;
-            tmp += `&utm_source=${source}`;
-            tmp += `&utm_medium=${medium}`;
-
-            if (terms) {
-                tmp += `&utm_term=${terms}`;
-            }
-
-            if (content) {
-                tmp += `&utm_content=${content}`;
-            }
-
-            return tmp;
+        if (campaign || source || medium) {
+            tmp += `?`;
+        }
+        if (campaign) {
+            arr.push(`utm_campaign=${campaign}`);
+        }
+        if (source) {
+            arr.push(`utm_source=${source}`);
+        }
+        if (medium) {
+            arr.push(`utm_medium=${medium}`);
         }
 
-        return "";
+        return tmp + arr.join('&');
     };
 
     function checkValidity() {
@@ -84,7 +79,7 @@
 
             return {
                 ...params,
-                validity: $config.campaign && source && medium
+                validity: $config.campaign || source || medium
             };
         });
     }
@@ -93,12 +88,11 @@
         const format = formatters[$config.format];
 
         const tmp = $utmParams.map((param) => {
-            const { source, medium, content } = param;
+            const { source, medium } = param;
             return {
                 ...param,
                 source: format(source),
-                medium: format(medium),
-                content: format(content)
+                medium: format(medium)
             };
         });
 
@@ -113,8 +107,6 @@
         selectedId = id;
         copy(encodeURI(buildURL(id)));
 
-        showConfetti();
-
         iziToast.success({
             title: "OK",
             message: "Copied to Clipboard!",
@@ -127,17 +119,14 @@
     <table class="bg-white border-collapse table-auto">
         <thead class="text-left text-center">
             <tr class="text-gray-500 border-b border-gray-300">
-                <th class="w-1/4 px-4 py-2 cursor-pointer" title="Required: Newsletter, Website, App">
-                    Source<span class="text-sm text-red-500">*</span>
+                <th class="w-1/3 px-4 py-2 cursor-pointer" title="Required: Newsletter, Website, App">
+                    Source
                 </th>
-                <th class="w-1/4 px-4 py-2 cursor-pointer"
+                <th class="w-1/3 px-4 py-2 cursor-pointer"
                     title="Required: Email, Social, Social Paid, CPC, Display, Affiliate, Referral, Chat">
-                    Medium<span class="text-sm text-red-500">*</span>
+                    Medium
                 </th>
-                <th class="w-1/4 px-4 py-2 cursor-pointer" title="Sub Reddit, Groups, ...">
-                    Content
-                </th>
-                <th class="w-1/4 px-4 py-2 cursor-pointer">Actions</th>
+                <th class="w-1/3 px-4 py-2 cursor-pointer">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -152,12 +141,6 @@
                     <input autocomplete="on" name="medium"
                         class="flex-1 block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm"
                         placeholder="Medium" bind:value={utmParam.medium} on:focus={()=> selectedId = id} required />
-                </td>
-                <td>
-                    <input autocomplete="on" name="content"
-                        class="block w-full px-4 py-2 text-center text-gray-600 truncate bg-transparent outline-none sm:text-sm"
-                        bind:value={utmParam.content} on:focus={()=>
-                    selectedId = id} placeholder="Content" />
                 </td>
                 <td class="flex justify-around py-1.5">
                     <Button on:click={()=> addUTMRecord(id)}>
